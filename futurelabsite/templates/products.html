@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продукты | Лаборатория будущего</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            padding-top: 72px !important;
+        }
+        main, .products-content, .products-cards, .container {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        .sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar-item {
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px 0 10px 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 2px solid #e5e5e5;
+            transition: color 0.2s;
+        }
+        .sidebar-item:last-child {
+            border-bottom: none;
+        }
+        .sidebar-item.active {
+            color: #3b7bbf;
+        }
+        .sidebar-arrow {
+            margin-left: auto;
+            font-size: 20px;
+            font-weight: bold;
+            color: #222;
+        }
+        .products-cards {
+            margin-left: 132px;
+        }
+        .product-card {
+            padding-top: 0px !important;
+        }
+        .product-card img {
+            max-width: 220px;
+            max-height: 140px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 18px auto;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 12px;
+        }
+        .cards-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px 48px;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .products-sidebar {
+            padding-top: 142px;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-center">
+                <a href="/" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="/static/images/logo.png" alt="Логотип" class="header-logo">
+                    <span class="header-lab">Лаборатория будущего</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item nav-item-products active">
+                        Продукты
+                        <div class="dropdown-menu" id="products-dropdown">
+                            <div class="dropdown-inner">
+                                <ul class="dropdown-list">
+                                    <li class="dropdown-drone"><img src="/static/images/strekosa.png" alt="ДКК Стрекоза"><span>ДКК «Стрекоза»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/pauk.png" alt="КК Паук"><span>КК «Паук»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/muravey.png" alt="БАС Муравей"><span>БАС «Муравей»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/muravey24.png" alt="БАС Муравей 24"><span>БАС «Муравей 24»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/shmel.png" alt="БАС Шмель"><span>БАС «Шмель»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/m500.png" alt="БАС M500+"><span>БАС «Грузовик M500+»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/m700.png" alt="БАС M700"><span>БАС «Грузовик М700»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/komar.png" alt="Комар FPV"><span>«Комар FPV»</span></li>
+                                </ul>
+                                <div class="dropdown-links">
+                                    <a href="/products" class="dropdown-link">Вся продукция "БПЛА"</a>
+                                    <a href="/help" class="dropdown-link">Помощь с выбором</a>
+                                    <a href="/software" class="dropdown-link">Программное обеспечение</a>
+                                    <a href="/consultation" class="dropdown-link">Оставить заявку на консультацию</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">Услуги</li>
+                    <li class="nav-item"><a href="/about/" style="text-decoration: none; color: inherit;">О нас</a></li>
+                    <li class="nav-item" id="contacts-nav">Контакты</li>
+                </ul>
+            </nav>
+            <div class="header-actions" style="position:relative;cursor:pointer;min-width:48px;min-height:48px;display:flex;align-items:center;justify-content:center;">
+                <img src="/static/images/search.svg" alt="Поиск" style="width:28px;height:28px;">
+                <div id="search-popup" style="display:none;position:absolute;top:40px;right:0;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.13);padding:12px 16px;z-index:1001;width:320px;">
+                    <input id="search-input" type="text" placeholder="Поиск дрона..." style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid #ccc;outline:none;">
+                    <ul id="search-suggestions" style="list-style:none;padding:0;margin:8px 0 0 0;max-height:220px;overflow-y:auto;"></ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="products-content" style="display: flex; max-width: 1200px; margin: 40px auto 0 auto;">
+            <aside class="products-sidebar" style="min-width: 270px;">
+                <ul class="sidebar-list">
+                    <li class="sidebar-item active" data-target="all">Все продукты <span class="sidebar-arrow">&#8250;</span></li>
+                    <li class="sidebar-item" data-target="kanatohod">Комплексы канатоход <span class="sidebar-arrow">&#8250;</span></li>
+                    <li class="sidebar-item" data-target="bas">Многофункциональные БАС <span class="sidebar-arrow">&#8250;</span></li>
+                    <li class="sidebar-item" data-target="fpv">FPV-Дроны <span class="sidebar-arrow">&#8250;</span></li>
+                    <li class="sidebar-item" data-target="cargo">Грузовые дроны <span class="sidebar-arrow">&#8250;</span></li>
+                    <li class="sidebar-item" data-target="software">Программное обеспечение <span class="sidebar-arrow">&#8250;</span></li>
+                    <li class="sidebar-item" data-target="champ">Оборудование для чемпионатов <span class="sidebar-arrow">&#8250;</span></li>
+                </ul>
+            </aside>
+            <section class="products-cards" style="flex: 1;">
+                <div id="all">
+                    {% for category, verbose_name, products_in_cat in products_by_category %}
+                        <div id="{{ category }}" style="margin-bottom: 64px; padding-top: 0;">
+                            <h2 style="margin: 32px 0 12px 16px; font-size: 1.5rem; color: #3b7bbf;">{{ verbose_name }}</h2>
+                            <div class="cards-row">
+                                {% for product in products_in_cat %}
+                                    <div class="product-card">
+                                        {% if product.image %}
+                                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        {% else %}
+                                            <div style="font-size:12px;color:red;">Нет изображения</div>
+                                        {% endif %}
+                                        <div class="product-title">{{ product.name }}</div>
+                                        <div class="product-desc">{{ product.description|truncatechars:100 }}</div>
+                                        <a href="#" class="product-btn">Подробнее&gt;&gt;</a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </main>
+    <script>
+        // --- DROPDOWN MENU PRODUCTS ---
+        const navItemProducts = document.querySelector('.nav-item-products');
+        const dropdownMenu = document.getElementById('products-dropdown');
+        let dropdownTimer = null;
+        function showDropdown() {
+            dropdownMenu.style.display = 'block';
+        }
+        function hideDropdown() {
+            dropdownMenu.style.display = 'none';
+        }
+        navItemProducts.addEventListener('mouseenter', showDropdown);
+        dropdownMenu.addEventListener('mouseenter', showDropdown);
+        navItemProducts.addEventListener('mouseleave', () => {
+            dropdownTimer = setTimeout(hideDropdown, 120);
+        });
+        dropdownMenu.addEventListener('mouseleave', () => {
+            dropdownTimer = setTimeout(hideDropdown, 120);
+        });
+        dropdownMenu.addEventListener('mouseenter', () => {
+            if (dropdownTimer) clearTimeout(dropdownTimer);
+        });
+        navItemProducts.addEventListener('mouseenter', () => {
+            if (dropdownTimer) clearTimeout(dropdownTimer);
+        });
+
+        // --- SMOOTH SCROLL TO CATEGORY ---
+        document.querySelectorAll('.sidebar-item').forEach(function(item) {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                const target = this.getAttribute('data-target');
+                if (target === 'all') {
+                    window.scrollTo({ top: document.getElementById('all').offsetTop - 70, behavior: 'smooth' });
+                } else {
+                    const el = document.getElementById(target);
+                    if (el) {
+                        window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // --- AJAX автокомплит поиска дронов ---
+        (function(){
+            const btn = document.getElementById('search-btn');
+            const popup = document.getElementById('search-popup');
+            const input = document.getElementById('search-input');
+            const suggestions = document.getElementById('search-suggestions');
+            const actions = document.querySelector('.header-actions');
+            let timer = null;
+            actions.addEventListener('click', function(e){
+                popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+                input.value = '';
+                suggestions.innerHTML = '';
+                if(popup.style.display === 'block') input.focus();
+            });
+            document.addEventListener('click', function(e){
+                if(!popup.contains(e.target) && !actions.contains(e.target)) popup.style.display = 'none';
+            });
+            input.addEventListener('input', function(){
+                clearTimeout(timer);
+                const q = input.value.trim();
+                if(!q){ suggestions.innerHTML = ''; return; }
+                timer = setTimeout(function(){
+                    fetch(`/autocomplete_products/?q=${encodeURIComponent(q)}`)
+                        .then(r=>r.json())
+                        .then(data=>{
+                            suggestions.innerHTML = '';
+                            if(data.results.length){
+                                data.results.forEach(function(item){
+                                    const li = document.createElement('li');
+                                    li.style.padding = '6px 0';
+                                    li.style.cursor = 'pointer';
+                                    li.textContent = item.name;
+                                    li.onclick = function(){
+                                        if(item.url){ window.location.href = item.url; }
+                                    };
+                                    suggestions.appendChild(li);
+                                });
+                            }else{
+                                const li = document.createElement('li');
+                                li.textContent = 'Ничего не найдено';
+                                li.style.color = '#888';
+                                suggestions.appendChild(li);
+                            }
+                        });
+                }, 200);
+            });
+        })();
+    </script>
+</body>
+</html> 

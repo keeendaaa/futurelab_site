@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | Лаборатория будущего</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .about-main-block { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; margin: 48px 0 32px 0; }
+        .about-main-text { flex: 1 1 320px; min-width: 280px; }
+        .about-main-title { font-size: 2rem; font-weight: bold; margin-bottom: 18px; color: #222; }
+        .about-main-desc { font-size: 1.1rem; line-height: 1.6; color: #222; margin-bottom: 0; }
+        .about-main-img { flex: 1 1 340px; min-width: 280px; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+        .about-main-img img { width: 100%; height: auto; display: block; }
+        .about-partners-title { font-size: 1.1rem; color: #2366a8; font-weight: bold; margin: 32px 0 12px 0; }
+        .about-team-block { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; margin: 48px 0 32px 0; }
+        .about-team-img { flex: 1 1 320px; min-width: 260px; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+        .about-team-img img { width: 100%; height: auto; display: block; }
+        .about-team-info { flex: 2 1 340px; min-width: 280px; display: flex; flex-direction: column; gap: 18px; }
+        .about-feature { display: flex; align-items: flex-start; gap: 12px; font-size: 1.08rem; color: #222; }
+        .about-feature-icon { font-size: 1.5rem; color: #2366a8; margin-top: 2px; }
+        .about-numbers-block { display: flex; flex-wrap: wrap; gap: 32px; margin: 40px 0 24px 0; }
+        .about-number { flex: 1 1 120px; min-width: 120px; background: #f7f9fb; border-radius: 12px; padding: 18px 24px; text-align: center; }
+        .about-number-title { font-size: 2rem; font-weight: bold; color: #2366a8; }
+        .about-number-desc { font-size: 1rem; color: #222; margin-top: 6px; }
+        .about-bottom-block { margin: 48px 0 0 0; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); position: relative; }
+        .about-bottom-img { width: 100%; height: auto; display: block; }
+        .about-bottom-content { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(35,102,168,0.85); color: #fff; padding: 32px 24px 24px 24px; border-radius: 0 0 18px 18px; }
+        .about-bottom-content p { margin: 0 0 18px 0; font-size: 1.1rem; }
+        .about-bottom-btn { display: inline-block; background: #fff; color: #2366a8; font-weight: bold; border-radius: 8px; padding: 12px 32px; text-decoration: none; font-size: 1.1rem; transition: background 0.2s, color 0.2s; }
+        .about-bottom-btn:hover { background: #2366a8; color: #fff; }
+        @media (max-width: 900px) {
+            .about-main-block, .about-team-block, .about-numbers-block { flex-direction: column; gap: 24px; }
+            .about-bottom-content { position: static; border-radius: 0 0 18px 18px; }
+        }
+        .about-progressbar-hover { cursor: pointer; }
+        .about-header-hover { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-center">
+                <a href="/" style="display: flex; align-items: center; text-decoration: none;">
+                    <img src="/static/images/logo.png" alt="Логотип" class="header-logo">
+                    <span class="header-lab">Лаборатория будущего</span>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item nav-item-products">
+                        Продукты
+                        <div class="dropdown-menu" id="products-dropdown">
+                            <div class="dropdown-inner">
+                                <ul class="dropdown-list">
+                                    <li class="dropdown-drone"><img src="/static/images/strekosa.png" alt="ДКК Стрекоза"><span>ДКК «Стрекоза»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/pauk.png" alt="КК Паук"><span>КК «Паук»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/muravey.png" alt="БАС Муравей"><span>БАС «Муравей»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/muravey24.png" alt="БАС Муравей 24"><span>БАС «Муравей 24»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/shmel.png" alt="БАС Шмель"><span>БАС «Шмель»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/m500.png" alt="БАС M500+"><span>БАС «Грузовик M500+»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/m700.png" alt="БАС M700"><span>БАС «Грузовик М700»</span></li>
+                                    <li class="dropdown-drone"><img src="/static/images/komar.png" alt="Комар FPV"><span>«Комар FPV»</span></li>
+                                </ul>
+                                <div class="dropdown-links">
+                                    <a href="/products" class="dropdown-link">Вся продукция "БПЛА"</a>
+                                    <a href="/help" class="dropdown-link">Помощь с выбором</a>
+                                    <a href="/software" class="dropdown-link">Программное обеспечение</a>
+                                    <a href="/consultation" class="dropdown-link">Оставить заявку на консультацию</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">Услуги</li>
+                    <li class="nav-item active">О нас</li>
+                    <li class="nav-item" id="contacts-nav">Контакты</li>
+                </ul>
+            </nav>
+            <div class="header-actions" style="position:relative;cursor:pointer;min-width:48px;min-height:48px;display:flex;align-items:center;justify-content:center;">
+                <img src="/static/images/search.svg" alt="Поиск" style="width:28px;height:28px;">
+                <div id="search-popup" style="display:none;position:absolute;top:40px;right:0;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.13);padding:12px 16px;z-index:1001;width:320px;">
+                    <input id="search-input" type="text" placeholder="Поиск дрона..." style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid #ccc;outline:none;">
+                    <ul id="search-suggestions" style="list-style:none;padding:0;margin:8px 0 0 0;max-height:220px;overflow-y:auto;"></ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main style="max-width: 1100px; margin: 0 auto; padding: 0 16px;">
+        <section class="about-main-block" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; margin: 48px 0 0 0;">
+            <div style="flex:1 1 340px; min-width:260px;">
+                <div style="font-size:2.5rem; font-weight: bold; color:#222; line-height:1.1;">Мы российская инновационная компания.<br>Основаны в 2011 году.</div>
+            </div>
+            <div style="flex:2 1 400px; min-width:260px; display:flex; align-items:center;">
+                <div style="font-size:1.15rem; color:#222; font-weight:400; line-height:1.5;">ООО «Лаборатория будущего» (FutureLab) — российский разработчик инновационных IT-решений и производитель беспилотных авиационных систем, а также центр компетенций в области БАС на Урале и учебный центр АБАС. Основаны в 2011 году в Екатеринбурге на территории Технопарка высоких технологий Свердловской области, компания создает комплексные роботизированные и программные продукты для автоматизации сложных и ответственных задач в ключевых отраслях промышленности.</div>
+            </div>
+        </section>
+        <div style="margin:36px 0 0px 0; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+            <img src="/static/images/about-main.jpg" alt="Дрон и ЛЭП" style="width:100%; display:block;">
+        </div>
+        <div class="about-partners-title" style="font-size:2rem; color:#2366a8; font-weight:bold; margin: 12px 0 12px 0;">Профессиональные партнеры</div>
+        <!-- Бегущая строка логотипов партнёров (как на главной) -->
+        <div class="partners-marquee" style="margin-bottom: 0px;">
+            <div class="partners-logos">
+                <img src="/static/images/parner1.svg" alt="Партнер 1">
+                <img src="/static/images/parner2.svg" alt="Партнер 2">
+                <img src="/static/images/parner3.svg" alt="Партнер 3">
+                <img src="/static/images/parner4.svg" alt="Партнер 4">
+                <img src="/static/images/parner5.svg" alt="Партнер 5">
+                <img src="/static/images/parner6.svg" alt="Партнер 6">
+                <img src="/static/images/parner7.svg" alt="Партнер 7">
+                <img src="/static/images/parner8.svg" alt="Партнер 8">
+                <img src="/static/images/parner9.svg" alt="Партнер 9">
+                <img src="/static/images/parner10.svg" alt="Партнер 10">
+                <img src="/static/images/parner11.svg" alt="Партнер 11">
+                <img src="/static/images/parner12.svg" alt="Партнер 12">
+                <img src="/static/images/parner13.svg" alt="Партнер 13">
+                <img src="/static/images/parner14.svg" alt="Партнер 14">
+                <img src="/static/images/parner15.svg" alt="Партнер 15">
+                <!-- Дублируем логотипы для бесшовной анимации -->
+                <img src="/static/images/parner1.svg" alt="Партнер 1">
+                <img src="/static/images/parner2.svg" alt="Партнер 2">
+                <img src="/static/images/parner3.svg" alt="Партнер 3">
+                <img src="/static/images/parner4.svg" alt="Партнер 4">
+                <img src="/static/images/parner5.svg" alt="Партнер 5">
+                <img src="/static/images/parner6.svg" alt="Партнер 6">
+                <img src="/static/images/parner7.svg" alt="Партнер 7">
+                <img src="/static/images/parner8.svg" alt="Партнер 8">
+                <img src="/static/images/parner9.svg" alt="Партнер 9">
+                <img src="/static/images/parner10.svg" alt="Партнер 10">
+                <img src="/static/images/parner11.svg" alt="Партнер 11">
+                <img src="/static/images/parner12.svg" alt="Партнер 12">
+                <img src="/static/images/parner13.svg" alt="Партнер 13">
+                <img src="/static/images/parner14.svg" alt="Партнер 14">
+                <img src="/static/images/parner15.svg" alt="Партнер 15">
+            </div>
+        </div>
+       
+        </div>
+        <section class="about-team-block" style="display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch; margin: 12px 0 12px 0;">
+            <div class="about-team-img" style="flex:1 1 340px; min-width:260px; border-radius:18px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,0.08); display:flex; align-items:center;">
+                <img src="/static/images/about-team.jpg" alt="Команда FutureLab" style="width:100%;height:auto;display:block;">
+            </div>
+            <div class="about-team-info" style="flex:2 1 400px; min-width:280px; background:#fff; border-radius:18px; box-shadow:0 2px 8px rgba(0,0,0,0.04); padding:32px 28px; position:relative; min-height:320px; display:flex; flex-direction:column; justify-content:center; align-items:center;" id="about-team-info-block">
+                <div style="display:flex;flex-direction:column;gap:0;justify-content:center;">
+                    <div style="margin-bottom:18px;">
+                        <div id="about-progressbar1" class="about-progressbar-hover" style="height:5px;width:100%;background:#e0e0e0;position:relative;margin-bottom:8px;border-radius:2px;overflow:hidden;cursor:pointer;">
+                            <div id="about-progress1" style="position:absolute;left:0;top:0;height:100%;width:0;background:#2366a8;transition:width 0.2s;"></div>
+                        </div>
+                        <div id="about-header1" class="about-header-hover" style="font-size:1.25rem;font-weight:bold;display:flex;align-items:center;gap:10px;cursor:pointer;">
+                            <img src="/static/images/dronepic.svg" alt="Дрон" style="width:32px;height:32px;object-fit:contain;"> Универсальные БАС и ПО
+                        </div>
+                        <div class="about-slide-text" id="about-text1" style="display:block;font-size:1.1rem; color:#222; margin-top:10px;">FutureLab разрабатывает БАС с грузоподъемностью от 5 до 80 кг, включая FPV-дроны и индивидуальные нагрузки. Создаёт ПО для автономной навигации и безопасности, включая систему возврата FutureLab Dead Reckoning Failsafe. В 2024 году выпущен симулятор полетов. Все решения внесены в реестр российского ПО.</div>
+                    </div>
+                    <div>
+                        <div id="about-progressbar2" class="about-progressbar-hover" style="height:5px;width:100%;background:#e0e0e0;position:relative;margin-bottom:8px;border-radius:2px;overflow:hidden;cursor:pointer;">
+                            <div id="about-progress2" style="position:absolute;left:0;top:0;height:100%;width:0;background:#2366a8;transition:width 0.2s;"></div>
+                        </div>
+                        <div id="about-header2" class="about-header-hover" style="font-size:1.25rem;font-weight:bold;display:flex;align-items:center;gap:10px;cursor:pointer;">
+                            <img src="/static/images/dronepic.svg" alt="Дрон" style="width:32px;height:32px;object-fit:contain;"> Комплексы «Канатоход» и ПО
+                        </div>
+                        <div class="about-slide-text" id="about-text2" style="display:none;font-size:1.1rem; color:#222; margin-top:10px;">Роботизированные комплексы проводят диагностику и обслуживание ЛЭП: осмотр, дефектоскопия, 3D-моделирование, ремонт и установка защитных элементов (в т.ч. с БАС «ПАУК»). ПО включает CableWalkerLaserScanner для анализа сканирования и CWClient для управления. Продукция включена в реестр Минпромторга.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Статистика -->
+        <section class="about-stats-block" style="max-width:700px;margin:48px auto 32px auto;">
+            <div style="display:flex;justify-content:space-between;align-items:stretch;background:#ededed;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.03);">
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 0;">
+                    <div style="font-size:1.1rem; color:#222; margin-bottom:4px;">Основаны в</div>
+                    <div style="font-size:2.5rem; font-weight:bold; color:#222;">2011</div>
+                </div>
+                <div style="width:1px;background:#ccc;margin:0 0;align-self:stretch;"></div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 0;">
+                    <div style="font-size:1.1rem; color:#222; margin-bottom:4px;">Наших дронов</div>
+                    <div style="font-size:2.5rem; font-weight:bold; color:#222;">11</div>
+                </div>
+                <div style="width:1px;background:#ccc;margin:0 0;align-self:stretch;"></div>
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 0;">
+                    <div style="font-size:1.1rem; color:#222; margin-bottom:4px;">Человек в штате</div>
+                    <div style="font-size:2.5rem; font-weight:bold; color:#222;">150+</div>
+                </div>
+            </div>
+        </section>
+        <div style="max-width:900px;margin:0 auto 32px auto; font-size:1.35rem;">
+            Компания является <span style="color:#2366a8;font-weight:bold;">одним из флагманских проектов Национальной технологической инициативы (НТИ), резидентом ИНТЦ «Аэрокосмическая инновационная долина» и НОЦ,</span> внедряет беспилотные авиационные системы, а также получает поддержку ведущих инновационных институтов: Фонда Сколково и Фонда содействия инновациям.
+        </div>
+        <section class="about-bottom-block" style="position:relative; margin:48px 0 0 0; border-radius:18px; overflow:hidden; min-height:220px; display:flex; align-items:stretch;">
+            <img src="/static/images/niz_fon_onas.jpg" alt="Дрон на траве" style="width:100%; height:100%; object-fit:cover; position:absolute; left:0; top:0; z-index:1;">
+            <div style="position:relative; z-index:2; display:flex; flex-direction:column; justify-content:center; align-items:flex-end; width:100%; height:100%; padding:48px 48px 40px 48px;">
+                <div style="color:#fff; font-size:2rem; font-weight:400; text-align:left; max-width:700px; margin-bottom:32px; line-height:1.2; text-shadow:0 2px 8px rgba(0,0,0,0.18);">
+                    Повышение эффективности, безопасности и надёжности критической инфраструктуры за счёт сочетания специализированного программного обеспечения.
+                </div>
+                <a href="/products" style="color:#fff; font-size:1.4rem; font-weight:bold; text-decoration:underline; text-align:left; transition:color 0.2s; text-shadow:0 2px 8px rgba(0,0,0,0.18);">
+                    Перейти к продуктам &rarr;
+                </a>
+            </div>
+        </section>
+    </main>
+    <!-- Копия нижнего бара с главной страницы, теперь вне main -->
+    <footer style="background:#dde5ef; margin-top:48px;">
+        <div class="partners-footer">
+            <div class="footer-left">
+                <img src="/static/images/logo2.png" alt="FutureLab" class="footer-logo2">
+                <div class="footer-meta">
+                    The activity is carried out with the grant support of the «Skolkovo» Foundation<br>
+                    © 2011–2025 Future Lab, LLC. All rights reserved<br>
+                    <a href="#">Terms of use</a> <a href="#">Privacy policy</a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <a href="https://vk.com/robot_urfu" class="footer-social" target="_blank">
+                    Мы в социальных сетях <img src="/static/images/vk.png" alt="VK" class="footer-vk">
+                </a>
+                <div class="footer-partners">
+                    <img src="/static/images/fund1.png" alt="Фонд 1" class="footer-fund">
+                    <img src="/static/images/fund2.png" alt="Фонд 2" class="footer-fund">
+                    <img src="/static/images/fund3.png" alt="Фонд 3" class="footer-fund">
+                    <img src="/static/images/fund4.png" alt="Фонд 4" class="footer-fund">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // --- DROPDOWN MENU PRODUCTS ---
+        const navItemProducts = document.querySelector('.nav-item-products');
+        const dropdownMenu = document.getElementById('products-dropdown');
+        let dropdownTimer = null;
+        function showDropdown() { dropdownMenu.style.display = 'block'; }
+        function hideDropdown() { dropdownMenu.style.display = 'none'; }
+        navItemProducts.addEventListener('mouseenter', showDropdown);
+        dropdownMenu.addEventListener('mouseenter', showDropdown);
+        navItemProducts.addEventListener('mouseleave', () => { dropdownTimer = setTimeout(hideDropdown, 120); });
+        dropdownMenu.addEventListener('mouseleave', () => { dropdownTimer = setTimeout(hideDropdown, 120); });
+        dropdownMenu.addEventListener('mouseenter', () => { if (dropdownTimer) clearTimeout(dropdownTimer); });
+        navItemProducts.addEventListener('mouseenter', () => { if (dropdownTimer) clearTimeout(dropdownTimer); });
+
+        // Новый слайдер с двумя прогресс-барами над каждым заголовком
+        (function() {
+            const text1 = document.getElementById('about-text1');
+            const text2 = document.getElementById('about-text2');
+            const progress1 = document.getElementById('about-progress1');
+            const progress2 = document.getElementById('about-progress2');
+            const block = document.getElementById('about-team-info-block');
+            const header1 = document.getElementById('about-header1');
+            const header2 = document.getElementById('about-header2');
+            const bar1 = document.getElementById('about-progressbar1');
+            const bar2 = document.getElementById('about-progressbar2');
+            let current = 0;
+            let duration = 10000; // 10 секунд
+            let timer, progressTimer;
+            let paused = false;
+            let elapsed = 0;
+            let lastStart = Date.now();
+
+            function showSlide(idx, resetElapsed=true) {
+                text1.style.display = idx === 0 ? 'block' : 'none';
+                text2.style.display = idx === 1 ? 'block' : 'none';
+                progress1.style.width = idx === 0 ? '0%' : '100%';
+                progress2.style.width = idx === 1 ? '0%' : '100%';
+                if (resetElapsed) elapsed = 0;
+                lastStart = Date.now();
+                clearInterval(progressTimer);
+                progressTimer = setInterval(() => {
+                    if (paused) return;
+                    let percent = Math.min(100, ((Date.now() - lastStart + elapsed) / duration) * 100);
+                    if(idx === 0) {
+                        progress1.style.width = percent + '%';
+                        progress2.style.width = '100%';
+                    } else {
+                        progress2.style.width = percent + '%';
+                        progress1.style.width = '100%';
+                    }
+                }, 30);
+            }
+            function nextSlide() {
+                current = (current + 1) % 2;
+                showSlide(current);
+            }
+            function startTimers() {
+                clearInterval(timer);
+                timer = setInterval(nextSlide, duration - elapsed);
+            }
+            function stopTimers() {
+                clearInterval(timer);
+            }
+            showSlide(current);
+            startTimers();
+
+            block.addEventListener('mouseenter', function() {
+                paused = true;
+                elapsed += Date.now() - lastStart;
+                stopTimers();
+            });
+            block.addEventListener('mouseleave', function() {
+                paused = false;
+                lastStart = Date.now();
+                startTimers();
+            });
+            function activateSlide(idx) {
+                current = idx;
+                elapsed = 0;
+                showSlide(current);
+                startTimers();
+            }
+            header1.addEventListener('mouseenter', function() { activateSlide(0); });
+            bar1.addEventListener('mouseenter', function() { activateSlide(0); });
+            header2.addEventListener('mouseenter', function() { activateSlide(1); });
+            bar2.addEventListener('mouseenter', function() { activateSlide(1); });
+        })();
+
+        // --- AJAX автокомплит поиска дронов ---
+        (function(){
+          const btn = document.getElementById('search-btn');
+          const popup = document.getElementById('search-popup');
+          const input = document.getElementById('search-input');
+          const suggestions = document.getElementById('search-suggestions');
+          const actions = document.querySelector('.header-actions');
+          let timer = null;
+          actions.addEventListener('click', function(e){
+            popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+            input.value = '';
+            suggestions.innerHTML = '';
+            if(popup.style.display === 'block') input.focus();
+          });
+          document.addEventListener('click', function(e){
+            if(!popup.contains(e.target) && !actions.contains(e.target)) popup.style.display = 'none';
+          });
+          input.addEventListener('input', function(){
+            clearTimeout(timer);
+            const q = input.value.trim();
+            if(!q){ suggestions.innerHTML = ''; return; }
+            timer = setTimeout(function(){
+              fetch(`/autocomplete_products/?q=${encodeURIComponent(q)}`)
+                .then(r=>r.json())
+                .then(data=>{
+                  suggestions.innerHTML = '';
+                  if(data.results.length){
+                    data.results.forEach(function(item){
+                      const li = document.createElement('li');
+                      li.style.padding = '6px 0';
+                      li.style.cursor = 'pointer';
+                      li.textContent = item.name;
+                      li.onclick = function(){
+                        if(item.url){ window.location.href = item.url; }
+                      };
+                      suggestions.appendChild(li);
+                    });
+                  }else{
+                    const li = document.createElement('li');
+                    li.textContent = 'Ничего не найдено';
+                    li.style.color = '#888';
+                    suggestions.appendChild(li);
+                  }
+                });
+            }, 200);
+          });
+        })();
+    </script>
+</body>
+</html> 
