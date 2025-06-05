@@ -3,14 +3,19 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import threading
-from .models import Product
+from .models import Product, News
 from django.db.models import Q
 from django.db.models.functions import Lower
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    products = Product.objects.all()
+    latest_news = News.objects.filter(is_active=True).order_by('-published_date')[:3]  # Изменено с 2 на 3
+    return render(request, 'index.html', {
+        'products': products,
+        'latest_news': latest_news,
+    })
 
 def about(request):
     return render(request, 'about.html')

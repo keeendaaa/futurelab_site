@@ -773,12 +773,14 @@ body {
     gap: 32px;
     justify-content: center;
     margin: 0 32px;
+    flex-wrap: wrap;
 }
 .news-card {
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    width: 420px;
+    width: calc(33.333% - 22px);
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     overflow: hidden;

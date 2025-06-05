@@ -182,35 +182,32 @@
           <div class="news-header">
             <h2 class="news-title">Новости компании</h2>
             <div class="news-social-buttons">
-              <a href="https://t.me/robot_urfu" class="news-social news-social-tg" target="_blank">
-                Telegram <img src="/static/images/telegram.png" alt="Telegram" class="news-tg">
+              <a href="https://t.me/cablewalkerLB" class="news-social news-social-tg" target="_blank">
+                <img src="/static/images/telegram.png" alt="Telegram" class="news-tg">
+                Telegram
               </a>
               <a href="https://vk.com/robot_urfu" class="news-social news-social-vk" target="_blank">
-                VK <img src="/static/images/vk.png" alt="VK" class="news-vk">
+                <img src="/static/images/vk.png" alt="VK" class="news-vk">
+                VK
               </a>
             </div>
           </div>
           <div class="news-cards">
+            {% for news in latest_news %}
             <div class="news-card">
-              <img src="/static/images/news1.jpg" alt="Новость 1" class="news-img">
+              {% if news.image %}
+              <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-img">
+              {% endif %}
               <div class="news-body">
-                <div class="news-caption">🚁 HORIZON 2025: Дроны и люди — будущее уже здесь!</div>
-                <div class="news-text">28-29 мая 2025 в Екатеринбурге состоялось событие, посвященное инновационным технологиям беспилотных авиаций — «HORIZON 2025». Дроны и люди. Узнайте, как дроны модернизируют промышленность. <span class="news-more">Показать ещё</span></div>
+                <div class="news-caption">{{ news.emoji }} {{ news.title }}</div>
+                <div class="news-text">{{ news.content|truncatechars:100 }}</div>
+                <a href="https://t.me/cablewalkerLB" class="news-more" target="_blank">Посмотреть больше</a>
                 <div class="news-meta">
-                  <span class="news-time">5 д. назад</span>
+                  <span class="news-date">{{ news.get_time_ago }}</span>
                 </div>
               </div>
             </div>
-            <div class="news-card">
-              <img src="/static/images/news2.jpg" alt="Новость 2" class="news-img">
-              <div class="news-body">
-                <div class="news-caption">🚁 «Лаборатория Будущего» представила новый БПЛА на выставке «ИННОПРОМ. Центральная Азия»</div>
-                <div class="news-text">Компания продемонстрировала диагностический комплекс «Стрекоза», предназначенный для обслуживания линий электропередач. <span class="news-more">Показать ещё</span></div>
-                <div class="news-meta">
-                  <span class="news-time">5 д. назад</span>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </section>
         <section class="services-section section-dark">
