@@ -48,3 +48,13 @@ class News(models.Model):
             return "Вчера"
         else:
             return f"{days} д. назад"
+
+class BotWhitelist(models.Model):
+    chat_id = models.CharField(max_length=32, unique=True)
+    first_name = models.CharField(max_length=255, blank=True, null=True, help_text="Имя пользователя (first_name)")
+    last_name = models.CharField(max_length=255, blank=True, null=True, help_text="Фамилия пользователя (last_name)")
+    username = models.CharField(max_length=255, blank=True, null=True, help_text="Имя пользователя (username)")
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.chat_id

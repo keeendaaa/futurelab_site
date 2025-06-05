@@ -192,7 +192,7 @@
               </a>
             </div>
           </div>
-          <div class="news-cards">
+          <div class="news-cards" id="news-cards">
             {% for news in latest_news %}
             <div class="news-card">
               {% if news.image %}
@@ -201,13 +201,15 @@
               <div class="news-body">
                 <div class="news-caption">{{ news.emoji }} {{ news.title }}</div>
                 <div class="news-text">{{ news.content|truncatechars:100 }}</div>
-                <a href="https://t.me/cablewalkerLB" class="news-more" target="_blank">Посмотреть больше</a>
                 <div class="news-meta">
                   <span class="news-date">{{ news.get_time_ago }}</span>
                 </div>
               </div>
             </div>
             {% endfor %}
+          </div>
+          <div style="display: flex; justify-content: center; margin-top: 24px;">
+            <button id="news-more-btn" class="news-more" style="font-size:1.1rem; padding:10px 32px; border-radius:8px; border:none; background:#2366a8; color:#fff; cursor:pointer;">Посмотреть больше</button>
           </div>
         </section>
         <section class="services-section section-dark">
@@ -468,6 +470,91 @@
               contactFormSection.scrollIntoView({ behavior: 'smooth' });
             });
           }
+
+          // --- NEWS LOAD MORE ---
+          let newsOffset = {{ latest_news|length }};
+          const newsMoreBtn = document.getElementById('news-more-btn');
+          const newsCards = document.getElementById('news-cards');
+          let loadedCards = [];
+          let collapsed = true;
+          const INITIAL_NEWS_COUNT = {{ latest_news|length }};
+
+          function setButtonState() {
+            if (collapsed) {
+              newsMoreBtn.textContent = 'Посмотреть больше';
+              newsMoreBtn.disabled = false;
+            } else {
+              newsMoreBtn.textContent = 'Свернуть';
+              newsMoreBtn.disabled = false;
+            }
+            newsMoreBtn.style.display = '';
+          }
+
+          function showInitialNewsOnly() {
+            const allCards = Array.from(newsCards.children);
+            allCards.forEach((card, idx) => {
+              if (idx < INITIAL_NEWS_COUNT) {
+                card.style.display = '';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          }
+
+          function showAllNews() {
+            const allCards = Array.from(newsCards.children);
+            allCards.forEach(card => {
+              card.style.display = '';
+            });
+          }
+
+          newsMoreBtn.addEventListener('click', function() {
+            if (collapsed) {
+              newsMoreBtn.disabled = true;
+              newsMoreBtn.textContent = 'Загрузка...';
+              fetch(`/load_more_news/?offset=${newsOffset}`, {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+              })
+                .then(r => r.json())
+                .then(data => {
+                  if (data.html) {
+                    const temp = document.createElement('div');
+                    temp.innerHTML = data.html;
+                    const newCards = Array.from(temp.children);
+                    newCards.forEach(card => {
+                      card.style.opacity = 0;
+                      card.style.transform = 'translateY(40px)';
+                      newsCards.appendChild(card);
+                      setTimeout(() => {
+                        card.style.transition = 'opacity 0.7s, transform 0.7s';
+                        card.style.opacity = 1;
+                        card.style.transform = 'translateY(0)';
+                      }, 50);
+                    });
+                    loadedCards = loadedCards.concat(newCards);
+                    newsOffset += data.count;
+                  }
+                  collapsed = false;
+                  setButtonState();
+                  showAllNews();
+                })
+                .catch(() => {
+                  newsMoreBtn.disabled = false;
+                  newsMoreBtn.textContent = 'Посмотреть больше';
+                });
+            } else {
+              // Свернуть: скрыть все, кроме первых N карточек
+              loadedCards.forEach(card => card.remove());
+              loadedCards = [];
+              newsOffset = INITIAL_NEWS_COUNT;
+              collapsed = true;
+              setButtonState();
+              showInitialNewsOnly();
+            }
+          });
+          // При загрузке страницы показываем только первые N новостей
+          showInitialNewsOnly();
+          setButtonState();
         });
     
         document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -502,35 +589,6 @@
           });
           document.addEventListener('click', function(e){
             if(!popup.contains(e.target) && !actions.contains(e.target)) popup.style.display = 'none';
-          });
-          input.addEventListener('input', function(){
-            clearTimeout(timer);
-            const q = input.value.trim();
-            if(!q){ suggestions.innerHTML = ''; return; }
-            timer = setTimeout(function(){
-              fetch(`/autocomplete_products/?q=${encodeURIComponent(q)}`)
-                .then(r=>r.json())
-                .then(data=>{
-                  suggestions.innerHTML = '';
-                  if(data.results.length){
-                    data.results.forEach(function(item){
-                      const li = document.createElement('li');
-                      li.style.padding = '6px 0';
-                      li.style.cursor = 'pointer';
-                      li.textContent = item.name;
-                      li.onclick = function(){
-                        if(item.url){ window.location.href = item.url; }
-                      };
-                      suggestions.appendChild(li);
-                    });
-                  }else{
-                    const li = document.createElement('li');
-                    li.textContent = 'Ничего не найдено';
-                    li.style.color = '#888';
-                    suggestions.appendChild(li);
-                  }
-                });
-            }, 200);
           });
         })();
       </script>

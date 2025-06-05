@@ -6,6 +6,8 @@ import threading
 from .models import Product, News
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.core import serializers
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -88,3 +90,12 @@ def autocomplete_products(request):
                 'id': p.id
             })
     return JsonResponse({'results': results})
+
+def load_more_news(request):
+    if request.method == 'GET' and request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        offset = int(request.GET.get('offset', 0))
+        limit = 3
+        news_qs = News.objects.filter(is_active=True).order_by('-published_date')[offset:offset+limit]
+        html = render_to_string('news_cards.html', {'news_list': news_qs})
+        return JsonResponse({'html': html, 'count': news_qs.count()})
+    return JsonResponse({'error': 'Invalid request'}, status=400)

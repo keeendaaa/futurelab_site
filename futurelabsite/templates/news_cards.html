@@ -1,0 +1,14 @@
+{% for news in news_list %}
+<div class="news-card">
+  {% if news.image %}
+  <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-img">
+  {% endif %}
+  <div class="news-body">
+    <div class="news-caption">{{ news.emoji }} {{ news.title }}</div>
+    <div class="news-text">{{ news.content|truncatechars:100 }}</div>
+    <div class="news-meta">
+      <span class="news-date">{{ news.get_time_ago }}</span>
+    </div>
+  </div>
+</div>
+{% endfor %} 

@@ -1,9 +1,13 @@
 import os
+import django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'futurelab_site.settings')
+django.setup()
+
 import logging
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 from django.conf import settings
-from .models import News
+from .models import News, BotWhitelist
 import requests
 from io import BytesIO
 from django.core.files import File
@@ -11,6 +15,7 @@ import re
 import asyncio
 from asgiref.sync import sync_to_async
 from django.core.wsgi import get_wsgi_application
+from django.utils import timezone
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +25,6 @@ TELEGRAM_BOT_TOKEN = '7260981978:AAH8z_hK4gtpvI4K71A-eQMkm6tRRitEsgM'
 ADMIN_CHAT_ID = '1267841885'
 
 # Инициализируем Django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'futurelab_site.settings')
 application = get_wsgi_application()
 
 class TelegramBot:
@@ -31,15 +35,22 @@ class TelegramBot:
     def setup_handlers(self):
         """Настройка обработчиков команд"""
         self.application.add_handler(CommandHandler("start", self.start_command))
+        self.application.add_handler(CommandHandler("list", self.list_news_command))
+        self.application.add_handler(CommandHandler("delete", self.delete_news_command))
+        self.application.add_handler(CallbackQueryHandler(self.handle_callback))
         self.application.add_handler(MessageHandler(filters.PHOTO & filters.CAPTION, self.handle_photo_message))
         self.application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_text_message))
 
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Обработчик команды /start"""
         await update.message.reply_text(
-            "Привет! Я бот для публикации новостей на сайте.\n\n"
-            "Отправьте мне текст новости, и я опубликую его на сайте.\n"
-            "Вы также можете отправить фото с подписью.\n\n"
+            "Привет! Я бот для управления новостями на сайте.\n\n"
+            "Доступные команды:\n"
+            "/list - показать список последних новостей\n"
+            "/delete - удалить новость\n\n"
+            "Для публикации новости:\n"
+            "1. Отправьте текст новости\n"
+            "2. Или отправьте фото с подписью\n\n"
             "Формат новости:\n"
             "1. Первая строка - заголовок (можно добавить эмодзи в начале)\n"
             "2. Остальной текст - содержание новости"
@@ -78,10 +89,29 @@ class TelegramBot:
         news.save()
         return news
 
+    @sync_to_async
+    def get_latest_news(self, limit=5):
+        """Получение последних новостей"""
+        return list(News.objects.filter(is_active=True).order_by('-published_date')[:limit])
+
+    @sync_to_async
+    def delete_news(self, news_id):
+        """Удаление новости"""
+        try:
+            news = News.objects.get(id=news_id)
+            news.delete()
+            return True
+        except News.DoesNotExist:
+            return False
+
+    @sync_to_async
+    def is_whitelisted(self, chat_id):
+        return BotWhitelist.objects.filter(chat_id=str(chat_id)).exists()
+
     async def handle_photo_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Обработчик сообщений с фотографиями"""
-        if str(update.effective_chat.id) != ADMIN_CHAT_ID:
-            await update.message.reply_text("Извините, у вас нет прав для публикации новостей.")
+        if not await self.is_whitelisted(update.effective_chat.id):
+            await update.message.reply_text("Доступ запрещён. Обратитесь к администратору.")
             return
 
         try:
@@ -110,8 +140,8 @@ class TelegramBot:
 
     async def handle_text_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Обработчик текстовых сообщений"""
-        if str(update.effective_chat.id) != ADMIN_CHAT_ID:
-            await update.message.reply_text("Извините, у вас нет прав для публикации новостей.")
+        if not await self.is_whitelisted(update.effective_chat.id):
+            await update.message.reply_text("Доступ запрещён. Обратитесь к администратору.")
             return
 
         try:
@@ -134,6 +164,78 @@ class TelegramBot:
             logger.error(f"Ошибка при обработке текста: {str(e)}")
             await update.message.reply_text("Произошла ошибка при публикации новости.")
 
+    async def list_news_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Обработчик команды /list"""
+        if not await self.is_whitelisted(update.effective_chat.id):
+            await update.message.reply_text("Доступ запрещён. Обратитесь к администратору.")
+            return
+
+        news_list = await self.get_latest_news()
+        if not news_list:
+            await update.message.reply_text("Нет доступных новостей.")
+            return
+
+        message = "Последние новости:\n\n"
+        for news in news_list:
+            message += f"ID: {news.id}\n"
+            message += f"Заголовок: {news.emoji} {news.title}\n"
+            message += f"Дата: {news.published_date.strftime('%d.%m.%Y %H:%M')}\n"
+            message += f"Содержание: {news.content[:100]}...\n\n"
+
+        await update.message.reply_text(message)
+
+    async def delete_news_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Обработчик команды /delete"""
+        if not await self.is_whitelisted(update.effective_chat.id):
+            await update.message.reply_text("Доступ запрещён. Обратитесь к администратору.")
+            return
+
+        news_list = await self.get_latest_news()
+        if not news_list:
+            await update.message.reply_text("Нет доступных новостей для удаления.")
+            return
+
+        keyboard = []
+        for news in news_list:
+            keyboard.append([
+                InlineKeyboardButton(
+                    f"{news.emoji} {news.title[:30]}...",
+                    callback_data=f"delete_{news.id}"
+                )
+            ])
+
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await update.message.reply_text(
+            "Выберите новость для удаления:",
+            reply_markup=reply_markup
+        )
+
+    async def handle_callback(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Обработчик callback-запросов от inline-кнопок"""
+        query = update.callback_query
+        await query.answer()
+
+        if not await self.is_whitelisted(update.effective_chat.id):
+            await query.edit_message_text("Извините, у вас нет прав для этого действия.")
+            return
+
+        if query.data.startswith("delete_"):
+            news_id = int(query.data.split("_")[1])
+            if await self.delete_news(news_id):
+                await query.edit_message_text("Новость успешно удалена!")
+            else:
+                await query.edit_message_text("Ошибка при удалении новости.")
+
     def run(self):
         """Запуск бота"""
-        self.application.run_polling() 
+        print("[News Bot] Бот запущен и ожидает сообщения...")
+        self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+
+if __name__ == '__main__':
+    try:
+        print("[News Bot] Запуск новостного бота...")
+        bot = TelegramBot()
+        bot.run()
+    except Exception as e:
+        print(f"[News Bot] Ошибка при запуске бота: {e}")
+        raise 
