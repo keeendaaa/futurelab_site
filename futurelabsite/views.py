@@ -22,6 +22,15 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+def security(request):
+    return render(request, 'security.html')
+
+def industry(request):
+    return render(request, 'industry.html')
+
+def excursion(request):
+    return render(request, 'excursion.html')
+
 TELEGRAM_TOKEN = '8154636602:AAELY7GSm_66sOk1CPPqIEXqBA-M1aNM9SU'
 TELEGRAM_CHAT_ID = '1267841885'  
 

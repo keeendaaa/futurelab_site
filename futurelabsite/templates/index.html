@@ -8,592 +8,563 @@
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <!DOCTYPE html>
-    <html lang="ru">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Future</title>
-      <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="/static/styles.css">
-    </head>
-    <body>
-      <header class="site-header">
-        <div class="header-inner">
-          <div class="header-center">
-            <img src="/static/images/logo.png" alt="Логотип" class="header-logo">
-            <span class="header-lab">Лаборатория будущего</span>
+    {% include "nav.html" %}
+    <main>
+      <section class="main-banner section-light">
+        <img src="/static/images/banner.jpg" alt="Дроны на поле" class="banner-bg">
+        <div class="banner-content">
+          <h1 class="banner-title">Откройте новые горизонты с нашими передовыми дронами, которые обеспечивают точность, безопасность и эффективность.</h1>
+          <div class="banner-buttons">
+            <a href="https://vk.com/wall-16066690_1502" class="banner-btn" target="_blank">Ознакомиться с демо - видео</a>
+            <a href="#" class="banner-btn">Напиши нам</a>
           </div>
-          <nav class="main-nav">
-            <ul class="nav-list">
-              <li class="nav-item nav-item-products">
-                Продукты
-                <div class="dropdown-menu" id="products-dropdown">
-                  <div class="dropdown-inner">
-                    <ul class="dropdown-list">
-                      <li class="dropdown-drone"><img src="/static/images/strekosa.png" alt="ДКК Стрекоза"><span>ДКК «Стрекоза»</span></li>
-                      <li class="dropdown-drone"><img src="/static/images/pauk.png" alt="КК Паук"><span>КК «Паук»</span></li>
-                      <li class="dropdown-drone"><img src="/static/images/muravey.png" alt="БАС Муравей"><span>БАС «Муравей»</span></li>
-                      <li class="dropdown-drone"><img src="/static/images/muravey24.png" alt="БАС Муравей 24"><span>БАС «Муравей 24»</span></li>
-                      <li class="dropdown-drone"><img src="/static/images/shmel.png" alt="БАС Шмель"><span>БАС «Шмель»</span></li>
-                      <li class="dropdown-drone"><img src="/static/images/m500.png" alt="БАС M500+"><span>БАС «Грузовик M500+»</span></li>
-                      <li class="dropdown-drone"><img src="/static/images/m700.png" alt="БАС M700"><span>БАС «Грузовик М700»</span></li>
-                      <li class="dropdown-drone"><img src="/static/images/komar.png" alt="Комар FPV"><span>«Комар FPV»</span></li>
-                    </ul>
-                    <div class="dropdown-links">
-                      <a href="/products" class="dropdown-link">Вся продукция "БПЛА"</a>
-                      <a href="/help" class="dropdown-link">Помощь с выбором</a>
-                      <a href="/software" class="dropdown-link">Программное обеспечение</a>
-                      <a href="/consultation" class="dropdown-link">Оставить заявку на консультацию</a>
-                    </div>
-                  </div>
+        </div>
+      </section>
+      <section class="about-company section-dark">
+        <img src="/static/images/about-bg.png" alt="Фон о компании" class="about-bg">
+        <div class="about-content">
+          <h2 class="about-title">О компании</h2>
+          <p class="about-text">
+            Мы российская инновационная компания, резидент ИТ-кластера фонда «Сколково», компания разрабатывает и производит беспилотные летательные аппараты для энергетики, логистики, спасения людей в зонах ЧС, природоохраны, экологического контроля, воздушного мониторинга, доставки грузов и биоматериалов.
+          </p>
+          <a href="#" class="about-link" id="about-more-btn">Узнать больше</a>
+          <div class="about-more" id="about-more-block">
+            <p>Мы российская инновационная компания, резидент ИТ-кластера фонда «Сколково». Основанны в 2011 году, компания разрабатывает и производит беспилотные летательные аппараты (БПЛА) для энергетики, логистики, спасения людей в зонах ЧС, природоохраны, экологического контроля, воздушного мониторинга, доставки грузов и биоматериалов.</p>
+            <p>Флагманский продукт компании – роботизированный комплекс «Канатоход», способный взлетать, садиться, передвигаться по проводам линий электропередачи и выполнять работы по диагностике и обслуживанию ЛЭП под напряжением до 500 кВ без отключения потребителей и риска для персонала.</p>
+            <p>Технология не имеет аналогов в мире.</p>
+          </div>
+        </div>
+      </section>
+      <section class="products-section section-light">
+        <h2 class="products-title">Наша продукция</h2>
+        <div class="products-slider">
+          <button class="slider-arrow left" id="slider-left" aria-label="Влево">
+            <img src="/static/images/arrow-left.png" alt="Влево" class="arrow-img">
+          </button>
+          <div class="slider-window">
+            <div class="slider-track" id="slider-track">
+              <div class="slider-slide active">
+                <img src="/static/images/slide1.jpg" alt="Канатоход" class="slider-img">
+                <div class="slider-content">
+                  <h3>Комплекс «Канатоход»</h3>
+                  <ul>
+                    <li><b>БПЛА «Стрекоза»</b> — для комплексной контактной диагностики воздушных линий электропередач 35-550 кВ</li>
+                    <li><b>БПЛА «Паук»</b> — для очистки проводов/тросов ВЛ 35-550 кВ от гололедно-изморозевых образований</li>
+                  </ul>
+                  <a href="#" class="slider-btn">Перейти</a>
                 </div>
-              </li>
-              <li class="nav-item">Услуги</li>
-              <li class="nav-item"><a href="/about/" style="text-decoration: none; color: inherit;">О нас</a></li>
-              <li class="nav-item" id="contacts-nav">Контакты</li>
-            </ul>
-          </nav>
-          <div class="header-actions" style="position:relative;cursor:pointer;min-width:48px;min-height:48px;display:flex;align-items:center;justify-content:center;">
-            <img src="/static/images/search.svg" alt="Поиск" style="width:28px;height:28px;">
-            <div id="search-popup" style="display:none;position:absolute;top:40px;right:0;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.13);padding:12px 16px;z-index:1001;width:320px;">
-              <input id="search-input" type="text" placeholder="Поиск дрона..." style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid #ccc;outline:none;">
-              <ul id="search-suggestions" style="list-style:none;padding:0;margin:8px 0 0 0;max-height:220px;overflow-y:auto;"></ul>
+              </div>
+              <div class="slider-slide">
+                <img src="/static/images/slide2.jpg" alt="БАС" class="slider-img">
+                <div class="slider-content">
+                  <h3>Многофункциональные БАС</h3>
+                  <ul>
+                    <li><b>БАС «Муравей»</b> — предназначена для доставки разногабаритных грузов до 15 кг на труднодоступные объекты различных отраслей промышленности и в зоны чрезвычайных ситуаций.</li>
+                    <li><b>БАС «Муха»</b> — предназначена для видеомониторинга и фотофиксации с применением тепловизионной съемки на объектах важной инфраструктуры. Уникальная конструкция позволяет перевозить грузы до 5 кг на дальние расстояния до 15 км.</li>
+                  </ul>
+                  <a href="#" class="slider-btn">Перейти</a>
+                </div>
+              </div>
+              <div class="slider-slide">
+                <img src="/static/images/slide3.jpg" alt="FPV-дроны" class="slider-img">
+                <div class="slider-content">
+                  <h3>FPV-дроны</h3>
+                  <ul>
+                    <li><b>«Комар FPV»</b> — предназначен для обучения сборки БПЛА, учебных полетов на улице и в помещении с целью проведения индивидуальных и групповых занятий для образовательных организаций.</li>
+                  </ul>
+                  <a href="#" class="slider-btn">Перейти</a>
+                </div>
+              </div>
+              <div class="slider-slide">
+                <img src="/static/images/slide4.jpg" alt="Программное обеспечение" class="slider-img">
+                <div class="slider-content">
+                  <h3>Программное обеспечение</h3>
+                  <ul>
+                    <li><b>CableWalker Laser Scanner</b> — Программное обеспечение для визуализации и анализа облаков точек при диагностике ЛЭП.</li>
+                    <li><b>CWClient</b> — Программное обеспечение для управления диагностическим оборудованием, установленным на роботизированной платформе «Стрекоза».</li>
+                  </ul>
+                  <a href="#" class="slider-btn">Перейти</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-arrow right" id="slider-right" aria-label="Вправо">
+            <img src="/static/images/arrow-right.png" alt="Вправо" class="arrow-img">
+          </button>
+        </div>
+        <div class="slider-dots" id="slider-dots"></div>
+      </section>
+      <section class="products-cards section-dark">
+        <div class="cards-row">
+          <div class="product-card">
+            <img src="/static/images/strekosa.png" alt="ДКК Стрекоза" class="product-img">
+            <div class="product-title">ДКК «Стрекоза»</div>
+            <div class="product-desc">Предназначен для комплексной контактной диагностики воздушных линий электропередач</div>
+            <a href="#" class="product-btn">Узнать больше</a>
+          </div>
+          <div class="product-card">
+            <img src="/static/images/pauk.png" alt="КК Паук" class="product-img">
+            <div class="product-title">КК «Паук»</div>
+            <div class="product-desc">Предназначен для контактной очистки проводов от гололедно-изморозевых образований</div>
+            <a href="#" class="product-btn">Узнать больше</a>
+          </div>
+          <div class="product-card">
+            <img src="/static/images/muravey.png" alt="БАС Муравей" class="product-img">
+            <div class="product-title">БАС «Муравей»</div>
+            <div class="product-desc">Предназначен для доставки разногабаритных грузов до 15 кг на труднодоступные объекты</div>
+            <a href="#" class="product-btn">Узнать больше</a>
+          </div>
+        </div>
+        <div class="cards-pagination">
+          <span class="cards-page active">1</span>
+          <span class="cards-page">2</span>
+          <span class="cards-page">3</span>
+          <button class="cards-next" aria-label="Далее">
+            <img src="/static/images/arrow-right.png" alt="Далее" class="arrow-img">
+          </button>
+        </div>
+      </section>
+      <section class="news-section section-light">
+        <div class="news-header">
+          <h2 class="news-title">Новости компании</h2>
+          <div class="news-social-buttons">
+            <a href="https://t.me/cablewalkerLB" class="news-social news-social-tg" target="_blank">
+              <img src="/static/images/telegram.png" alt="Telegram" class="news-tg">
+              Telegram
+            </a>
+            <a href="https://vk.com/robot_urfu" class="news-social news-social-vk" target="_blank">
+              <img src="/static/images/vk.png" alt="VK" class="news-vk">
+              VK
+            </a>
+          </div>
+        </div>
+        <div class="news-cards" id="news-cards">
+          {% for news in latest_news %}
+          <div class="news-card">
+            {% if news.image %}
+            <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-img">
+            {% endif %}
+            <div class="news-body">
+              <div class="news-caption">{{ news.emoji }} {{ news.title }}</div>
+              <div class="news-text">{{ news.content|truncatechars:100 }}</div>
+              <div class="news-meta">
+                <span class="news-date">{{ news.get_time_ago }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 24px;">
+          <button id="news-more-btn" class="news-more" style="font-size:1.1rem; padding:10px 32px; border-radius:8px; border:none; background:#2366a8; color:#fff; cursor:pointer;">Посмотреть больше</button>
+        </div>
+      </section>
+      <section class="services-section section-dark">
+        <h2 class="services-title">Услуги, которые мы реализуем</h2>
+        <div class="services-grid">
+          <div class="service service-energy">
+            <img src="/static/images/service-energy.jpg" alt="Электроэнергетика">
+            <span>Электроэнергетика</span>
+          </div>
+          <div class="service service-industry">
+            <img src="/static/images/service-industry.jpg" alt="Промышленность">
+            <span>Промышленность</span>
+          </div>
+          <div class="service service-safety">
+            <span>Безопасность</span>
+          </div>
+          <div class="service service-education">
+            <span>Обучение</span>
+          </div>
+        </div>
+      </section>
+      <section class="contact-section" id="contact-form">
+        <div class="contact-bg">
+          <img src="/static/images/contact-bg.jpg" alt="Фон контактов">
+        </div>
+        <div class="contact-flex">
+          <div class="contact-left">
+            <div class="contact-left-text">
+              <p class="contact-desc">Для получения дополнительной информации о наших услугах напишите нам:</p>
+            </div>
+          </div>
+          <div class="contact-right">
+            <form class="contact-form" id="contactForm">
+              <h2 class="contact-title">Свяжись с нами</h2>
+              <div class="form-group">
+                <label for="name">Ваше имя</label>
+                <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" placeholder="+7" required>
+              </div>
+              <div class="form-group">
+                <textarea id="message" name="message" rows="4" placeholder="Ваш вопрос" required></textarea>
+              </div>
+              <button type="submit" class="contact-submit">Узнать больше</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="partners-section section-light">
+        <h2 class="partners-title">Наши партнеры</h2>
+        <div class="partners-marquee">
+          <div class="partners-logos">
+            <img src="/static/images/parner1.svg" alt="Партнер 1">
+            <img src="/static/images/parner2.svg" alt="Партнер 2">
+            <img src="/static/images/parner3.svg" alt="Партнер 3">
+            <img src="/static/images/parner4.svg" alt="Партнер 4">
+            <img src="/static/images/parner5.svg" alt="Партнер 5">
+            <img src="/static/images/parner6.svg" alt="Партнер 6">
+            <img src="/static/images/parner7.svg" alt="Партнер 7">
+            <img src="/static/images/parner8.svg" alt="Партнер 8">
+            <img src="/static/images/parner9.svg" alt="Партнер 9">
+            <img src="/static/images/parner10.svg" alt="Партнер 10">
+            <img src="/static/images/parner11.svg" alt="Партнер 11">
+            <img src="/static/images/parner12.svg" alt="Партнер 12">
+            <img src="/static/images/parner13.svg" alt="Партнер 13">
+            <img src="/static/images/parner14.svg" alt="Партнер 14">
+            <img src="/static/images/parner15.svg" alt="Партнер 15">
+            <!-- Дублируем логотипы для бесшовной анимации -->
+            <img src="/static/images/parner1.svg" alt="Партнер 1">
+            <img src="/static/images/parner2.svg" alt="Партнер 2">
+            <img src="/static/images/parner3.svg" alt="Партнер 3">
+            <img src="/static/images/parner4.svg" alt="Партнер 4">
+            <img src="/static/images/parner5.svg" alt="Партнер 5">
+            <img src="/static/images/parner6.svg" alt="Партнер 6">
+            <img src="/static/images/parner7.svg" alt="Партнер 7">
+            <img src="/static/images/parner8.svg" alt="Партнер 8">
+            <img src="/static/images/parner9.svg" alt="Партнер 9">
+            <img src="/static/images/parner10.svg" alt="Партнер 10">
+            <img src="/static/images/parner11.svg" alt="Партнер 11">
+            <img src="/static/images/parner12.svg" alt="Партнер 12">
+            <img src="/static/images/parner13.svg" alt="Партнер 13">
+            <img src="/static/images/parner14.svg" alt="Партнер 14">
+            <img src="/static/images/parner15.svg" alt="Партнер 15">
+          </div>
+        </div>
+        <div class="partners-footer" style="background:#222; color:#ccc; border-radius:0;">
+          <div class="footer-left">
+            <img src="/static/images/logo2.png" alt="FutureLab" class="footer-logo2">
+            <div class="footer-meta">
+              The activity is carried out with the grant support of the «Skolkovo» Foundation<br>
+              © 2011–2025 Future Lab, LLC. All rights reserved<br>
+              ИНН 6658399868, <a href="/static/privacy_policy.pdf" download style="color:#b3d1ff;text-decoration:underline;">Политика конфиденциальности</a>
+            </div>
+          </div>
+          <div class="footer-right">
+            <a href="https://vk.com/robot_urfu" class="footer-social" target="_blank">
+              Мы в социальных сетях <img src="/static/images/vk.png" alt="VK" class="footer-vk">
+            </a>
+            <div class="footer-partners">
+              <img src="/static/images/fund1.png" alt="Фонд 1" class="footer-fund">
+              <img src="/static/images/fund2.png" alt="Фонд 2" class="footer-fund">
+              <img src="/static/images/fund3.png" alt="Фонд 3" class="footer-fund">
+              <img src="/static/images/fund4.png" alt="Фонд 4" class="footer-fund">
             </div>
           </div>
         </div>
-      </header>
-      <main>
-        <section class="main-banner section-light">
-          <img src="/static/images/banner.jpg" alt="Дроны на поле" class="banner-bg">
-          <div class="banner-content">
-            <h1 class="banner-title">Откройте новые горизонты с нашими передовыми дронами, которые обеспечивают точность, безопасность и эффективность.</h1>
-            <div class="banner-buttons">
-              <a href="https://vk.com/wall-16066690_1502" class="banner-btn" target="_blank">Ознакомиться с демо - видео</a>
-              <a href="#" class="banner-btn">Напиши нам</a>
-            </div>
-          </div>
-        </section>
-        <section class="about-company section-dark">
-          <img src="/static/images/about-bg.png" alt="Фон о компании" class="about-bg">
-          <div class="about-content">
-            <h2 class="about-title">О компании</h2>
-            <p class="about-text">
-              Мы российская инновационная компания, резидент ИТ-кластера фонда «Сколково», компания разрабатывает и производит беспилотные летательные аппараты для энергетики, логистики, спасения людей в зонах ЧС, природоохраны, экологического контроля, воздушного мониторинга, доставки грузов и биоматериалов.
-            </p>
-            <a href="#" class="about-link" id="about-more-btn">Узнать больше</a>
-            <div class="about-more" id="about-more-block">
-              <p>Мы российская инновационная компания, резидент ИТ-кластера фонда «Сколково». Основанны в 2011 году, компания разрабатывает и производит беспилотные летательные аппараты (БПЛА) для энергетики, логистики, спасения людей в зонах ЧС, природоохраны, экологического контроля, воздушного мониторинга, доставки грузов и биоматериалов.</p>
-              <p>Флагманский продукт компании – роботизированный комплекс «Канатоход», способный взлетать, садиться, передвигаться по проводам линий электропередачи и выполнять работы по диагностике и обслуживанию ЛЭП под напряжением до 500 кВ без отключения потребителей и риска для персонала.</p>
-              <p>Технология не имеет аналогов в мире.</p>
-            </div>
-          </div>
-        </section>
-        <section class="products-section section-light">
-          <h2 class="products-title">Наша продукция</h2>
-          <div class="products-slider">
-            <button class="slider-arrow left" id="slider-left" aria-label="Влево">
-              <img src="/static/images/arrow-left.png" alt="Влево" class="arrow-img">
-            </button>
-            <div class="slider-window">
-              <div class="slider-track" id="slider-track">
-                <div class="slider-slide active">
-                  <img src="/static/images/slide1.jpg" alt="Канатоход" class="slider-img">
-                  <div class="slider-content">
-                    <h3>Комплекс «Канатоход»</h3>
-                    <ul>
-                      <li><b>БПЛА «Стрекоза»</b> — для комплексной контактной диагностики воздушных линий электропередач 35-550 кВ</li>
-                      <li><b>БПЛА «Паук»</b> — для очистки проводов/тросов ВЛ 35-550 кВ от гололедно-изморозевых образований</li>
-                    </ul>
-                    <a href="#" class="slider-btn">Перейти</a>
-                  </div>
-                </div>
-                <div class="slider-slide">
-                  <img src="/static/images/slide2.jpg" alt="БАС" class="slider-img">
-                  <div class="slider-content">
-                    <h3>Многофункциональные БАС</h3>
-                    <ul>
-                      <li><b>БАС «Муравей»</b> — предназначена для доставки разногабаритных грузов до 15 кг на труднодоступные объекты различных отраслей промышленности и в зоны чрезвычайных ситуаций.</li>
-                      <li><b>БАС «Муха»</b> — предназначена для видеомониторинга и фотофиксации с применением тепловизионной съемки на объектах важной инфраструктуры. Уникальная конструкция позволяет перевозить грузы до 5 кг на дальние расстояния до 15 км.</li>
-                    </ul>
-                    <a href="#" class="slider-btn">Перейти</a>
-                  </div>
-                </div>
-                <div class="slider-slide">
-                  <img src="/static/images/slide3.jpg" alt="FPV-дроны" class="slider-img">
-                  <div class="slider-content">
-                    <h3>FPV-дроны</h3>
-                    <ul>
-                      <li><b>«Комар FPV»</b> — предназначен для обучения сборки БПЛА, учебных полетов на улице и в помещении с целью проведения индивидуальных и групповых занятий для образовательных организаций.</li>
-                    </ul>
-                    <a href="#" class="slider-btn">Перейти</a>
-                  </div>
-                </div>
-                <div class="slider-slide">
-                  <img src="/static/images/slide4.jpg" alt="Программное обеспечение" class="slider-img">
-                  <div class="slider-content">
-                    <h3>Программное обеспечение</h3>
-                    <ul>
-                      <li><b>CableWalker Laser Scanner</b> — Программное обеспечение для визуализации и анализа облаков точек при диагностике ЛЭП.</li>
-                      <li><b>CWClient</b> — Программное обеспечение для управления диагностическим оборудованием, установленным на роботизированной платформе «Стрекоза».</li>
-                    </ul>
-                    <a href="#" class="slider-btn">Перейти</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button class="slider-arrow right" id="slider-right" aria-label="Вправо">
-              <img src="/static/images/arrow-right.png" alt="Вправо" class="arrow-img">
-            </button>
-          </div>
-          <div class="slider-dots" id="slider-dots"></div>
-        </section>
-        <section class="products-cards section-dark">
-          <div class="cards-row">
-            <div class="product-card">
-              <img src="/static/images/strekosa.png" alt="ДКК Стрекоза" class="product-img">
-              <div class="product-title">ДКК «Стрекоза»</div>
-              <div class="product-desc">Предназначен для комплексной контактной диагностики воздушных линий электропередач</div>
-              <a href="#" class="product-btn">Узнать больше</a>
-            </div>
-            <div class="product-card">
-              <img src="/static/images/pauk.png" alt="КК Паук" class="product-img">
-              <div class="product-title">КК «Паук»</div>
-              <div class="product-desc">Предназначен для контактной очистки проводов от гололедно-изморозевых образований</div>
-              <a href="#" class="product-btn">Узнать больше</a>
-            </div>
-            <div class="product-card">
-              <img src="/static/images/muravey.png" alt="БАС Муравей" class="product-img">
-              <div class="product-title">БАС «Муравей»</div>
-              <div class="product-desc">Предназначен для доставки разногабаритных грузов до 15 кг на труднодоступные объекты</div>
-              <a href="#" class="product-btn">Узнать больше</a>
-            </div>
-          </div>
-          <div class="cards-pagination">
-            <span class="cards-page active">1</span>
-            <span class="cards-page">2</span>
-            <span class="cards-page">3</span>
-            <button class="cards-next" aria-label="Далее">
-              <img src="/static/images/arrow-right.png" alt="Далее" class="arrow-img">
-            </button>
-          </div>
-        </section>
-        <section class="news-section section-light">
-          <div class="news-header">
-            <h2 class="news-title">Новости компании</h2>
-            <div class="news-social-buttons">
-              <a href="https://t.me/cablewalkerLB" class="news-social news-social-tg" target="_blank">
-                <img src="/static/images/telegram.png" alt="Telegram" class="news-tg">
-                Telegram
-              </a>
-              <a href="https://vk.com/robot_urfu" class="news-social news-social-vk" target="_blank">
-                <img src="/static/images/vk.png" alt="VK" class="news-vk">
-                VK
-              </a>
-            </div>
-          </div>
-          <div class="news-cards" id="news-cards">
-            {% for news in latest_news %}
-            <div class="news-card">
-              {% if news.image %}
-              <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-img">
-              {% endif %}
-              <div class="news-body">
-                <div class="news-caption">{{ news.emoji }} {{ news.title }}</div>
-                <div class="news-text">{{ news.content|truncatechars:100 }}</div>
-                <div class="news-meta">
-                  <span class="news-date">{{ news.get_time_ago }}</span>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-          <div style="display: flex; justify-content: center; margin-top: 24px;">
-            <button id="news-more-btn" class="news-more" style="font-size:1.1rem; padding:10px 32px; border-radius:8px; border:none; background:#2366a8; color:#fff; cursor:pointer;">Посмотреть больше</button>
-          </div>
-        </section>
-        <section class="services-section section-dark">
-          <h2 class="services-title">Услуги, которые мы реализуем</h2>
-          <div class="services-grid">
-            <div class="service service-energy">
-              <img src="/static/images/service-energy.jpg" alt="Электроэнергетика">
-              <span>Электроэнергетика</span>
-            </div>
-            <div class="service service-industry">
-              <img src="/static/images/service-industry.jpg" alt="Промышленность">
-              <span>Промышленность</span>
-            </div>
-            <div class="service service-safety">
-              <span>Безопасность</span>
-            </div>
-            <div class="service service-education">
-              <span>Обучение</span>
-            </div>
-          </div>
-        </section>
-        <section class="contact-section" id="contact-form">
-          <div class="contact-bg">
-            <img src="/static/images/contact-bg.jpg" alt="Фон контактов">
-          </div>
-          <div class="contact-flex">
-            <div class="contact-left">
-              <div class="contact-left-text">
-                <p class="contact-desc">Для получения дополнительной информации о наших услугах напишите нам:</p>
-              </div>
-            </div>
-            <div class="contact-right">
-              <form class="contact-form" id="contactForm">
-                <h2 class="contact-title">Свяжись с нами</h2>
-                <div class="form-group">
-                  <label for="name">Ваше имя</label>
-                  <input type="text" id="name" name="name" placeholder="Ваше имя" required>
-                </div>
-                <div class="form-group">
-                  <label for="phone">Телефон</label>
-                  <input type="tel" id="phone" name="phone" placeholder="+7" required>
-                </div>
-                <div class="form-group">
-                  <textarea id="message" name="message" rows="4" placeholder="Ваш вопрос" required></textarea>
-                </div>
-                <button type="submit" class="contact-submit">Узнать больше</button>
-              </form>
-            </div>
-          </div>
-        </section>
-        <section class="partners-section section-light">
-          <h2 class="partners-title">Наши партнеры</h2>
-          <div class="partners-marquee">
-            <div class="partners-logos">
-              <img src="/static/images/parner1.svg" alt="Партнер 1">
-              <img src="/static/images/parner2.svg" alt="Партнер 2">
-              <img src="/static/images/parner3.svg" alt="Партнер 3">
-              <img src="/static/images/parner4.svg" alt="Партнер 4">
-              <img src="/static/images/parner5.svg" alt="Партнер 5">
-              <img src="/static/images/parner6.svg" alt="Партнер 6">
-              <img src="/static/images/parner7.svg" alt="Партнер 7">
-              <img src="/static/images/parner8.svg" alt="Партнер 8">
-              <img src="/static/images/parner9.svg" alt="Партнер 9">
-              <img src="/static/images/parner10.svg" alt="Партнер 10">
-              <img src="/static/images/parner11.svg" alt="Партнер 11">
-              <img src="/static/images/parner12.svg" alt="Партнер 12">
-              <img src="/static/images/parner13.svg" alt="Партнер 13">
-              <img src="/static/images/parner14.svg" alt="Партнер 14">
-              <img src="/static/images/parner15.svg" alt="Партнер 15">
-              <!-- Дублируем логотипы для бесшовной анимации -->
-              <img src="/static/images/parner1.svg" alt="Партнер 1">
-              <img src="/static/images/parner2.svg" alt="Партнер 2">
-              <img src="/static/images/parner3.svg" alt="Партнер 3">
-              <img src="/static/images/parner4.svg" alt="Партнер 4">
-              <img src="/static/images/parner5.svg" alt="Партнер 5">
-              <img src="/static/images/parner6.svg" alt="Партнер 6">
-              <img src="/static/images/parner7.svg" alt="Партнер 7">
-              <img src="/static/images/parner8.svg" alt="Партнер 8">
-              <img src="/static/images/parner9.svg" alt="Партнер 9">
-              <img src="/static/images/parner10.svg" alt="Партнер 10">
-              <img src="/static/images/parner11.svg" alt="Партнер 11">
-              <img src="/static/images/parner12.svg" alt="Партнер 12">
-              <img src="/static/images/parner13.svg" alt="Партнер 13">
-              <img src="/static/images/parner14.svg" alt="Партнер 14">
-              <img src="/static/images/parner15.svg" alt="Партнер 15">
-            </div>
-          </div>
-          <div class="partners-footer" style="background:#222; color:#ccc; border-radius:0;">
-            <div class="footer-left">
-              <img src="/static/images/logo2.png" alt="FutureLab" class="footer-logo2">
-              <div class="footer-meta">
-                The activity is carried out with the grant support of the «Skolkovo» Foundation<br>
-                © 2011–2025 Future Lab, LLC. All rights reserved<br>
-                ИНН 6658399868, <a href="/static/privacy_policy.pdf" download style="color:#b3d1ff;text-decoration:underline;">Политика конфиденциальности</a>
-              </div>
-            </div>
-            <div class="footer-right">
-              <a href="https://vk.com/robot_urfu" class="footer-social" target="_blank">
-                Мы в социальных сетях <img src="/static/images/vk.png" alt="VK" class="footer-vk">
-              </a>
-              <div class="footer-partners">
-                <img src="/static/images/fund1.png" alt="Фонд 1" class="footer-fund">
-                <img src="/static/images/fund2.png" alt="Фонд 2" class="footer-fund">
-                <img src="/static/images/fund3.png" alt="Фонд 3" class="footer-fund">
-                <img src="/static/images/fund4.png" alt="Фонд 4" class="footer-fund">
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <script>
-        // about-more раскрытие
-        const btn = document.getElementById('about-more-btn');
-        const block = document.getElementById('about-more-block');
-        let opened = false;
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          opened = !opened;
-          block.classList.toggle('open', opened);
+      </section>
+    </main>
+    <script>
+      // about-more раскрытие
+      const btn = document.getElementById('about-more-btn');
+      const block = document.getElementById('about-more-block');
+      let opened = false;
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        opened = !opened;
+        block.classList.toggle('open', opened);
+      });
+  
+      // --- DROPDOWN MENU PRODUCTS ---
+      // Для надёжности: меню не пропадает, пока курсор на пункте или на самом меню
+      const navItemProducts = document.querySelector('.nav-item-products');
+      const dropdownMenu = document.getElementById('products-dropdown');
+      let dropdownTimer = null;
+  
+      function showDropdown() {
+        dropdownMenu.style.display = 'block';
+      }
+      function hideDropdown() {
+        dropdownMenu.style.display = 'none';
+      }
+  
+      navItemProducts.addEventListener('mouseenter', showDropdown);
+      dropdownMenu.addEventListener('mouseenter', showDropdown);
+      navItemProducts.addEventListener('mouseleave', () => {
+        dropdownTimer = setTimeout(hideDropdown, 120);
+      });
+      dropdownMenu.addEventListener('mouseleave', () => {
+        dropdownTimer = setTimeout(hideDropdown, 120);
+      });
+      dropdownMenu.addEventListener('mouseenter', () => {
+        if (dropdownTimer) clearTimeout(dropdownTimer);
+      });
+      navItemProducts.addEventListener('mouseenter', () => {
+        if (dropdownTimer) clearTimeout(dropdownTimer);
+      });
+  
+      document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('slider-track');
+        const slides = document.querySelectorAll('.slider-slide');
+        const dots = document.getElementById('slider-dots');
+        const leftBtn = document.getElementById('slider-left');
+        const rightBtn = document.getElementById('slider-right');
+        let currentSlide = 0;
+  
+        // Create dots
+        slides.forEach((_, index) => {
+          const dot = document.createElement('span');
+          dot.classList.add('slider-dot');
+          if (index === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => goToSlide(index));
+          dots.appendChild(dot);
         });
-    
-        // --- DROPDOWN MENU PRODUCTS ---
-        // Для надёжности: меню не пропадает, пока курсор на пункте или на самом меню
-        const navItemProducts = document.querySelector('.nav-item-products');
-        const dropdownMenu = document.getElementById('products-dropdown');
-        let dropdownTimer = null;
-    
-        function showDropdown() {
-          dropdownMenu.style.display = 'block';
+  
+        function updateDots() {
+          document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+          });
         }
-        function hideDropdown() {
-          dropdownMenu.style.display = 'none';
+  
+        function goToSlide(index) {
+          slides.forEach(slide => {
+            slide.classList.remove('active', 'to-left', 'to-right', 'from-left', 'from-right', 'fade-in');
+          });
+          const direction = index > currentSlide ? 'right' : 'left';
+          slides[currentSlide].classList.add(`to-${direction}`);
+          slides[index].classList.add('active', 'fade-in');
+          currentSlide = index;
+          updateDots();
         }
-    
-        navItemProducts.addEventListener('mouseenter', showDropdown);
-        dropdownMenu.addEventListener('mouseenter', showDropdown);
-        navItemProducts.addEventListener('mouseleave', () => {
-          dropdownTimer = setTimeout(hideDropdown, 120);
-        });
-        dropdownMenu.addEventListener('mouseleave', () => {
-          dropdownTimer = setTimeout(hideDropdown, 120);
-        });
-        dropdownMenu.addEventListener('mouseenter', () => {
-          if (dropdownTimer) clearTimeout(dropdownTimer);
-        });
-        navItemProducts.addEventListener('mouseenter', () => {
-          if (dropdownTimer) clearTimeout(dropdownTimer);
-        });
-    
-        document.addEventListener('DOMContentLoaded', function() {
-          const track = document.getElementById('slider-track');
-          const slides = document.querySelectorAll('.slider-slide');
-          const dots = document.getElementById('slider-dots');
-          const leftBtn = document.getElementById('slider-left');
-          const rightBtn = document.getElementById('slider-right');
-          let currentSlide = 0;
-    
-          // Create dots
-          slides.forEach((_, index) => {
-            const dot = document.createElement('span');
-            dot.classList.add('slider-dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(index));
-            dots.appendChild(dot);
-          });
-    
-          function updateDots() {
-            document.querySelectorAll('.slider-dot').forEach((dot, index) => {
-              dot.classList.toggle('active', index === currentSlide);
-            });
+  
+        leftBtn.addEventListener('click', () => {
+          if (currentSlide > 0) {
+            goToSlide(currentSlide - 1);
+          } else {
+            goToSlide(slides.length - 1);
           }
-    
-          function goToSlide(index) {
-            slides.forEach(slide => {
-              slide.classList.remove('active', 'to-left', 'to-right', 'from-left', 'from-right', 'fade-in');
-            });
-            const direction = index > currentSlide ? 'right' : 'left';
-            slides[currentSlide].classList.add(`to-${direction}`);
-            slides[index].classList.add('active', 'fade-in');
-            currentSlide = index;
-            updateDots();
+        });
+  
+        rightBtn.addEventListener('click', () => {
+          if (currentSlide < slides.length - 1) {
+            goToSlide(currentSlide + 1);
+          } else {
+            goToSlide(0);
           }
-    
-          leftBtn.addEventListener('click', () => {
-            if (currentSlide > 0) {
-              goToSlide(currentSlide - 1);
-            } else {
-              goToSlide(slides.length - 1);
+        });
+  
+        // Auto-advance slides every 5 seconds
+        setInterval(() => {
+          if (currentSlide < slides.length - 1) {
+            goToSlide(currentSlide + 1);
+          } else {
+            goToSlide(0);
+          }
+        }, 5000);
+  
+        // --- Анимация появления секций при скролле ---
+        function revealSectionsOnScroll() {
+          const sections = document.querySelectorAll('.section-light, .section-dark');
+          const windowHeight = window.innerHeight;
+          sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < windowHeight - 60) {
+              section.classList.add('visible');
             }
           });
-    
-          rightBtn.addEventListener('click', () => {
-            if (currentSlide < slides.length - 1) {
-              goToSlide(currentSlide + 1);
-            } else {
-              goToSlide(0);
-            }
-          });
-    
-          // Auto-advance slides every 5 seconds
-          setInterval(() => {
-            if (currentSlide < slides.length - 1) {
-              goToSlide(currentSlide + 1);
-            } else {
-              goToSlide(0);
-            }
-          }, 5000);
-    
-          // --- Анимация появления секций при скролле ---
-          function revealSectionsOnScroll() {
-            const sections = document.querySelectorAll('.section-light, .section-dark');
-            const windowHeight = window.innerHeight;
-            sections.forEach(section => {
-              const rect = section.getBoundingClientRect();
-              if (rect.top < windowHeight - 60) {
-                section.classList.add('visible');
-              }
-            });
-          }
-          window.addEventListener('scroll', revealSectionsOnScroll);
-          revealSectionsOnScroll();
-    
-          // --- Анимация счёта для блока статистики (если есть) ---
-          const statSection = document.querySelector('.stats-section');
-          if (statSection) {
-            let statsAnimated = false;
-            function animateStats() {
-              if (statsAnimated) return;
-              const rect = statSection.getBoundingClientRect();
-              if (rect.top < window.innerHeight - 60) {
-                statsAnimated = true;
-                statSection.querySelectorAll('.stat-number').forEach(el => {
-                  const target = +el.dataset.target;
-                  let current = 0;
-                  const step = Math.ceil(target / 40);
-                  const interval = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                      el.textContent = target;
-                      clearInterval(interval);
-                    } else {
-                      el.textContent = current;
-                    }
-                  }, 30);
-                });
-              }
-            }
-            window.addEventListener('scroll', animateStats);
-            animateStats();
-          }
-    
-          // Плавный скролл к форме
-          const contactsNav = document.getElementById('contacts-nav');
-          const contactFormSection = document.getElementById('contact-form');
-          if (contactsNav && contactFormSection) {
-            contactsNav.addEventListener('click', function(e) {
-              e.preventDefault();
-              contactFormSection.scrollIntoView({ behavior: 'smooth' });
-            });
-          }
-
-          // --- NEWS LOAD MORE ---
-          let newsOffset = {{ latest_news|length }};
-          const newsMoreBtn = document.getElementById('news-more-btn');
-          const newsCards = document.getElementById('news-cards');
-          let loadedCards = [];
-          let collapsed = true;
-          const INITIAL_NEWS_COUNT = {{ latest_news|length }};
-
-          function setButtonState() {
-            if (collapsed) {
-              newsMoreBtn.textContent = 'Посмотреть больше';
-              newsMoreBtn.disabled = false;
-            } else {
-              newsMoreBtn.textContent = 'Свернуть';
-              newsMoreBtn.disabled = false;
-            }
-            newsMoreBtn.style.display = '';
-          }
-
-          function showInitialNewsOnly() {
-            const allCards = Array.from(newsCards.children);
-            allCards.forEach((card, idx) => {
-              if (idx < INITIAL_NEWS_COUNT) {
-                card.style.display = '';
-              } else {
-                card.style.display = 'none';
-              }
-            });
-          }
-
-          function showAllNews() {
-            const allCards = Array.from(newsCards.children);
-            allCards.forEach(card => {
-              card.style.display = '';
-            });
-          }
-
-          newsMoreBtn.addEventListener('click', function() {
-            if (collapsed) {
-              newsMoreBtn.disabled = true;
-              newsMoreBtn.textContent = 'Загрузка...';
-              fetch(`/load_more_news/?offset=${newsOffset}`, {
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-              })
-                .then(r => r.json())
-                .then(data => {
-                  if (data.html) {
-                    const temp = document.createElement('div');
-                    temp.innerHTML = data.html;
-                    const newCards = Array.from(temp.children);
-                    newCards.forEach(card => {
-                      card.style.opacity = 0;
-                      card.style.transform = 'translateY(40px)';
-                      newsCards.appendChild(card);
-                      setTimeout(() => {
-                        card.style.transition = 'opacity 0.7s, transform 0.7s';
-                        card.style.opacity = 1;
-                        card.style.transform = 'translateY(0)';
-                      }, 50);
-                    });
-                    loadedCards = loadedCards.concat(newCards);
-                    newsOffset += data.count;
+        }
+        window.addEventListener('scroll', revealSectionsOnScroll);
+        revealSectionsOnScroll();
+  
+        // --- Анимация счёта для блока статистики (если есть) ---
+        const statSection = document.querySelector('.stats-section');
+        if (statSection) {
+          let statsAnimated = false;
+          function animateStats() {
+            if (statsAnimated) return;
+            const rect = statSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 60) {
+              statsAnimated = true;
+              statSection.querySelectorAll('.stat-number').forEach(el => {
+                const target = +el.dataset.target;
+                let current = 0;
+                const step = Math.ceil(target / 40);
+                const interval = setInterval(() => {
+                  current += step;
+                  if (current >= target) {
+                    el.textContent = target;
+                    clearInterval(interval);
+                  } else {
+                    el.textContent = current;
                   }
+                }, 30);
+              });
+            }
+          }
+          window.addEventListener('scroll', animateStats);
+          animateStats();
+        }
+  
+        // Плавный скролл к форме
+        const contactsNav = document.getElementById('contacts-nav');
+        const contactFormSection = document.getElementById('contact-form');
+        if (contactsNav && contactFormSection) {
+          contactsNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            contactFormSection.scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+
+        // --- NEWS LOAD MORE ---
+        let newsOffset = {{ latest_news|length }};
+        const newsMoreBtn = document.getElementById('news-more-btn');
+        const newsCards = document.getElementById('news-cards');
+        let loadedCards = [];
+        let collapsed = true;
+        const INITIAL_NEWS_COUNT = {{ latest_news|length }};
+
+        function setButtonState() {
+          if (collapsed) {
+            newsMoreBtn.textContent = 'Посмотреть больше';
+            newsMoreBtn.disabled = false;
+          } else {
+            newsMoreBtn.textContent = 'Свернуть';
+            newsMoreBtn.disabled = false;
+          }
+          newsMoreBtn.style.display = '';
+        }
+
+        function showInitialNewsOnly() {
+          const allCards = Array.from(newsCards.children);
+          allCards.forEach((card, idx) => {
+            if (idx < INITIAL_NEWS_COUNT) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        }
+
+        function showAllNews() {
+          const allCards = Array.from(newsCards.children);
+          allCards.forEach(card => {
+            card.style.display = '';
+          });
+        }
+
+        newsMoreBtn.addEventListener('click', function() {
+          if (collapsed) {
+            newsMoreBtn.disabled = true;
+            newsMoreBtn.textContent = 'Загрузка...';
+            fetch(`/load_more_news/?offset=${newsOffset}`, {
+              headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+              .then(r => r.json())
+              .then(data => {
+                if (data.html) {
+                  const temp = document.createElement('div');
+                  temp.innerHTML = data.html;
+                  const newCards = Array.from(temp.children);
+                  newCards.forEach(card => {
+                    card.style.opacity = 0;
+                    card.style.transform = 'translateY(40px)';
+                    newsCards.appendChild(card);
+                    setTimeout(() => {
+                      card.style.transition = 'opacity 0.7s, transform 0.7s';
+                      card.style.opacity = 1;
+                      card.style.transform = 'translateY(0)';
+                    }, 50);
+                  });
+                  loadedCards = loadedCards.concat(newCards);
+                  newsOffset += data.count;
+                }
                   collapsed = false;
                   setButtonState();
-                  showAllNews();
-                })
-                .catch(() => {
-                  newsMoreBtn.disabled = false;
-                  newsMoreBtn.textContent = 'Посмотреть больше';
-                });
-            } else {
-              // Свернуть: скрыть все, кроме первых N карточек
-              loadedCards.forEach(card => card.remove());
-              loadedCards = [];
-              newsOffset = INITIAL_NEWS_COUNT;
-              collapsed = true;
-              setButtonState();
-              showInitialNewsOnly();
-            }
-          });
-          // При загрузке страницы показываем только первые N новостей
-          showInitialNewsOnly();
-          setButtonState();
+                showAllNews();
+              })
+              .catch(() => {
+                newsMoreBtn.disabled = false;
+                newsMoreBtn.textContent = 'Посмотреть больше';
+              });
+          } else {
+            // Свернуть: скрыть все, кроме первых N карточек
+            loadedCards.forEach(card => card.remove());
+            loadedCards = [];
+            newsOffset = INITIAL_NEWS_COUNT;
+            collapsed = true;
+            setButtonState();
+            showInitialNewsOnly();
+          }
         });
-    
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-          e.preventDefault();
-          const formData = new FormData(this);
-          fetch('/send_telegram/', {
-            method: 'POST',
-            body: formData,
-          }).then(r => r.json()).then(data => {
-            if (data.status === 'ok') {
-              alert('Сообщение отправлено!');
-              this.reset();
-            } else {
-              alert('Ошибка отправки!');
-            }
-          });
+        // При загрузке страницы показываем только первые N новостей
+        showInitialNewsOnly();
+        setButtonState();
+      });
+  
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        fetch('/send_telegram/', {
+          method: 'POST',
+          body: formData,
+        }).then(r => r.json()).then(data => {
+          if (data.status === 'ok') {
+            alert('Сообщение отправлено!');
+            this.reset();
+          } else {
+            alert('Ошибка отправки!');
+          }
         });
-    
-        // --- AJAX автокомплит поиска дронов ---
-        (function(){
-          const btn = document.getElementById('search-btn');
-          const popup = document.getElementById('search-popup');
-          const input = document.getElementById('search-input');
-          const suggestions = document.getElementById('search-suggestions');
-          const actions = document.querySelector('.header-actions');
-          let timer = null;
-          actions.addEventListener('click', function(e){
-            popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-            input.value = '';
-            suggestions.innerHTML = '';
-            if(popup.style.display === 'block') input.focus();
-          });
-          document.addEventListener('click', function(e){
-            if(!popup.contains(e.target) && !actions.contains(e.target)) popup.style.display = 'none';
-          });
-        })();
-      </script>
-    </body>
-    </html>
-    
-</body>
+      });
+  
+      // --- AJAX автокомплит поиска дронов ---
+      (function(){
+        const btn = document.getElementById('search-btn');
+        const popup = document.getElementById('search-popup');
+        const input = document.getElementById('search-input');
+        const suggestions = document.getElementById('search-suggestions');
+        const actions = document.querySelector('.header-actions');
+        let timer = null;
+        actions.addEventListener('click', function(e){
+          popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+          input.value = '';
+          suggestions.innerHTML = '';
+          if(popup.style.display === 'block') input.focus();
+        });
+        document.addEventListener('click', function(e){
+          if(!popup.contains(e.target) && !actions.contains(e.target)) popup.style.display = 'none';
+        });
+      })();
+
+      // --- DROPDOWN MENU SERVICES ---
+      // Меню не пропадает, пока курсор на пункте или на самом меню
+      const navItemServices = document.querySelector('.nav-item-services');
+      const dropdownMenuServices = document.getElementById('services-dropdown');
+      let dropdownTimerServices = null;
+
+      function showDropdownServices() {
+        dropdownMenuServices.style.display = 'block';
+      }
+      function hideDropdownServices() {
+        dropdownMenuServices.style.display = 'none';
+      }
+
+      navItemServices.addEventListener('mouseenter', showDropdownServices);
+      dropdownMenuServices.addEventListener('mouseenter', showDropdownServices);
+      navItemServices.addEventListener('mouseleave', () => {
+        dropdownTimerServices = setTimeout(hideDropdownServices, 120);
+      });
+      dropdownMenuServices.addEventListener('mouseleave', () => {
+        dropdownTimerServices = setTimeout(hideDropdownServices, 120);
+      });
+      dropdownMenuServices.addEventListener('mouseenter', () => {
+        if (dropdownTimerServices) clearTimeout(dropdownTimerServices);
+      });
+      navItemServices.addEventListener('mouseenter', () => {
+        if (dropdownTimerServices) clearTimeout(dropdownTimerServices);
+      });
+    </script>
+  </body>
 </html> 

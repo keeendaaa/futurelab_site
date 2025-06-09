@@ -32,6 +32,9 @@ urlpatterns = [
     path('search/', views.search_products, name='search_products'),
     path('autocomplete_products/', views.autocomplete_products, name='autocomplete_products'),
     path('load_more_news/', load_more_news, name='load_more_news'),
+    path('services/security/', views.security, name='security'),
+    path('services/industry/', views.industry, name='industry'),
+    path('services/excursion/', views.excursion, name='excursion'),
 ]
 
 if settings.DEBUG:

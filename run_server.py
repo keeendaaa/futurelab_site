@@ -120,7 +120,7 @@ if __name__ == '__main__':
         print("venv\\Scripts\\activate  # для Windows")
         print("pip install -r requirements.txt")
         sys.exit(1)
-
+    
     # Запускаем Django сервер в отдельном процессе
     django_proc = Process(target=run_django)
     django_proc.start()

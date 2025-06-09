@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="max-width:1100px;margin:40px auto 0 auto;padding:0 16px;">
+  <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;">
+    <div style="flex:2 1 340px;min-width:260px;">
+      <div style="font-size:2.3rem;font-weight:bold;color:#2366a8;margin-bottom:8px;">Промышленность</div>
+      <div style="font-size:1.1rem;color:#222;line-height:1.5;margin-bottom:18px;">Комплексные услуги для промышленных объектов.</div>
+    </div>
+    <div style="flex:1 1 700px;min-width:400px;max-width:700px;">
+      <video src="/static/industry.mp4" autoplay loop muted style="width:100%;border-radius:14px;box-shadow:0 2px 8px rgba(35,102,168,0.12);"></video>
+    </div>
+  </div>
+  <div style="margin-top:32px;font-size:2rem;font-weight:bold;color:#2366a8;">Виды работ</div>
+  <div style="font-size:1.15rem;font-weight:bold;color:#2366a8;margin-bottom:8px;">Выполнение различных задач для промышленных предприятий и других заказчиков.</div>
+  <ul style="font-size:1.1rem;color:#111;margin:18px 0 32px 18px;line-height:1.6;">
+    <li>Доставка грузов до 15 кг на расстояние до 15 км</li>
+    <li>Видеомониторинг с тепловизором для поиска очагов возгорания</li>
+    <li>Комплексные испытания систем обнаружения и подавления БПЛА</li>
+  </ul>
+  <hr style="margin:32px 0 24px 0;border:0;border-top:2px solid #e5e5e5;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+    <div style="font-size:2rem;font-weight:bold;color:#2366a8;line-height:1;margin:0;">Документы</div>
+    <a href="/consultation" class="banner-btn" style="font-size:1.1rem;padding:12px 32px;line-height:1;margin:0;">Оставить заявку на консультацию</a>
+  </div>
+  <a id="docs" href="/static/%D0%91%D0%90%D0%A1%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D1%80%D0%BE%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8.pdf" download style="font-size:1.1rem;color:#2366a8;text-decoration:underline;">Скачать документ</a>
+</div>
+{% endblock %} 

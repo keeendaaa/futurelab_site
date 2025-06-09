@@ -1,0 +1,120 @@
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-center">
+      <a href="/" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="/static/images/logo.png" alt="Логотип" class="header-logo">
+        <span class="header-lab">Лаборатория будущего</span>
+      </a>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li class="nav-item nav-item-products">
+          Продукты
+          <div class="dropdown-menu" id="products-dropdown">
+            <div class="dropdown-inner">
+              <ul class="dropdown-list">
+                <li class="dropdown-drone"><img src="/static/images/strekosa.png" alt="ДКК Стрекоза"><span>ДКК «Стрекоза»</span></li>
+                <li class="dropdown-drone"><img src="/static/images/pauk.png" alt="КК Паук"><span>КК «Паук»</span></li>
+                <li class="dropdown-drone"><img src="/static/images/muravey.png" alt="БАС Муравей"><span>БАС «Муравей»</span></li>
+                <li class="dropdown-drone"><img src="/static/images/muravey24.png" alt="БАС Муравей 24"><span>БАС «Муравей 24»</span></li>
+                <li class="dropdown-drone"><img src="/static/images/shmel.png" alt="БАС Шмель"><span>БАС «Шмель»</span></li>
+                <li class="dropdown-drone"><img src="/static/images/m500.png" alt="БАС M500+"><span>БАС «Грузовик M500+»</span></li>
+                <li class="dropdown-drone"><img src="/static/images/m700.png" alt="БАС M700"><span>БАС «Грузовик М700»</span></li>
+                <li class="dropdown-drone"><img src="/static/images/komar.png" alt="Комар FPV"><span>«Комар FPV»</span></li>
+              </ul>
+              <div class="dropdown-links">
+                <a href="/products" class="dropdown-link">Вся продукция "БПЛА"</a>
+                <a href="/help" class="dropdown-link">Помощь с выбором</a>
+                <a href="/software" class="dropdown-link">Программное обеспечение</a>
+                <a href="/consultation" class="dropdown-link">Оставить заявку на консультацию</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item nav-item-services">
+          Услуги
+          <div class="dropdown-menu" id="services-dropdown">
+            <div class="dropdown-inner">
+              <ul class="dropdown-list services-grid">
+                <li class="dropdown-drone service-safety">
+                  <span>Безопасность</span>
+                  <span style="font-size:0.98rem;color:#222;opacity:0.8;margin:6px 0 10px 0;text-align:center;max-width:180px;">Обеспечение безопасности объектов, систем и персонала с помощью современных технологий и решений.</span>
+                  <a href="/services/security/" class="dropdown-link">Подробнее &gt;&gt;</a>
+                </li>
+                <li class="dropdown-drone service-excursion">
+                  <span>Экскурсия для школьников</span>
+                  <span style="font-size:0.98rem;color:#222;opacity:0.8;margin:6px 0 10px 0;text-align:center;max-width:180px;">Организация экскурсий и образовательных программ для школьников.</span>
+                  <a href="/services/excursion/" class="dropdown-link">Подробнее &gt;&gt;</a>
+                </li>
+                <li class="dropdown-drone service-industry">
+                  <span>Промышленность</span>
+                  <span style="font-size:0.98rem;color:#222;opacity:0.8;margin:6px 0 10px 0;text-align:center;max-width:180px;">Обеспечение промышленной автоматизации, мониторинга и диагностики.</span>
+                  <a href="/services/industry/" class="dropdown-link">Подробнее &gt;&gt;</a>
+                </li>
+                <li class="dropdown-drone service-energy">
+                  <span>Электроэнергетика</span>
+                  <span style="font-size:0.98rem;color:#222;opacity:0.8;margin:6px 0 10px 0;text-align:center;max-width:180px;">Обслуживание и диагностика объектов электроэнергетики, повышение эффективности и безопасности.</span>
+                  <a href="#" class="dropdown-link">Подробнее &gt;&gt;</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item"><a href="/about/" style="text-decoration: none; color: inherit;">О нас</a></li>
+        <li class="nav-item" id="contacts-nav" style="cursor:pointer;" onclick="if (window.location.pathname !== '/') { window.location.href = '/#contact-form'; } else { document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' }); }">Контакты</li>
+      </ul>
+    </nav>
+    <div class="header-actions" style="position:relative;cursor:pointer;min-width:48px;min-height:48px;display:flex;align-items:center;justify-content:center;">
+      <img src="/static/images/search.svg" alt="Поиск" style="width:28px;height:28px;">
+      <div id="search-popup" style="display:none;position:absolute;top:40px;right:0;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.13);padding:12px 16px;z-index:1001;width:320px;">
+        <input id="search-input" type="text" placeholder="Поиск дрона..." style="width:100%;padding:8px 12px;border-radius:6px;border:1px solid #ccc;outline:none;">
+        <ul id="search-suggestions" style="list-style:none;padding:0;margin:8px 0 0 0;max-height:220px;overflow-y:auto;"></ul>
+      </div>
+    </div>
+  </div>
+</header>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // --- DROPDOWN MENU PRODUCTS ---
+  const navItemProducts = document.querySelector('.nav-item-products');
+  const dropdownMenuProducts = document.getElementById('products-dropdown');
+  let dropdownTimerProducts = null;
+
+  function showDropdownProducts() {
+    clearTimeout(dropdownTimerProducts);
+    dropdownMenuProducts.style.display = 'block';
+  }
+  function hideDropdownProducts() {
+    dropdownMenuProducts.style.display = 'none';
+  }
+
+  navItemProducts.addEventListener('mouseenter', showDropdownProducts);
+  navItemProducts.addEventListener('mouseleave', () => {
+    dropdownTimerProducts = setTimeout(hideDropdownProducts, 200);
+  });
+  dropdownMenuProducts.addEventListener('mouseenter', showDropdownProducts);
+  dropdownMenuProducts.addEventListener('mouseleave', () => {
+    dropdownTimerProducts = setTimeout(hideDropdownProducts, 200);
+  });
+
+  // --- DROPDOWN MENU SERVICES ---
+  const navItemServices = document.querySelector('.nav-item-services');
+  const dropdownMenuServices = document.getElementById('services-dropdown');
+  let dropdownTimerServices = null;
+  function showDropdownServices() {
+    clearTimeout(dropdownTimerServices);
+    dropdownMenuServices.style.display = 'block';
+  }
+  function hideDropdownServices() {
+    dropdownMenuServices.style.display = 'none';
+  }
+  navItemServices.addEventListener('mouseenter', showDropdownServices);
+  navItemServices.addEventListener('mouseleave', () => {
+    dropdownTimerServices = setTimeout(hideDropdownServices, 200);
+  });
+  dropdownMenuServices.addEventListener('mouseenter', showDropdownServices);
+  dropdownMenuServices.addEventListener('mouseleave', () => {
+    dropdownTimerServices = setTimeout(hideDropdownServices, 200);
+  });
+});
+</script> 
