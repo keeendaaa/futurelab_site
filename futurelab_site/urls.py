@@ -21,7 +21,7 @@ from futurelabsite import views
 from django.conf import settings
 from django.conf.urls.static import static
 import os
-from futurelabsite.views import send_telegram, products_list, load_more_news
+from futurelabsite.views import send_telegram, products_list, load_more_news, product_detail
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -35,6 +35,7 @@ urlpatterns = [
     path('services/security/', views.security, name='security'),
     path('services/industry/', views.industry, name='industry'),
     path('services/excursion/', views.excursion, name='excursion'),
+    path('products/<slug:slug>/', product_detail, name='product_detail'),
 ]
 
 if settings.DEBUG:

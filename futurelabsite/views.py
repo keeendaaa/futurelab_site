@@ -3,7 +3,7 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import threading
-from .models import Product, News
+from .models import Product, News, CharacteristicSection
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.core import serializers
@@ -108,3 +108,16 @@ def load_more_news(request):
         html = render_to_string('news_cards.html', {'news_list': news_qs})
         return JsonResponse({'html': html, 'count': news_qs.count()})
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+def product_detail(request, slug):
+    product = Product.objects.get(slug=slug)
+    sections = CharacteristicSection.objects.all()
+    characteristics_by_section = []
+    for section in sections:
+        chars = product.characteristics.filter(section=section)
+        if chars.exists():
+            characteristics_by_section.append((section, chars))
+    return render(request, 'product_detail.html', {
+        'product': product,
+        'characteristics_by_section': characteristics_by_section,
+    })

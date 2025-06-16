@@ -58,3 +58,39 @@ class BotWhitelist(models.Model):
 
     def __str__(self):
         return self.chat_id
+
+class CharacteristicSection(models.Model):
+    name = models.CharField("Название раздела", max_length=200)
+
+    class Meta:
+        verbose_name = "Раздел характеристик"
+        verbose_name_plural = "Разделы характеристик"
+
+    def __str__(self):
+        return self.name
+
+class Characteristic(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="characteristics", verbose_name="Продукт")
+    section = models.ForeignKey(CharacteristicSection, on_delete=models.CASCADE, related_name="characteristics", verbose_name="Раздел")
+    name = models.CharField("Название характеристики", max_length=200)
+    value = models.CharField("Значение", max_length=500)
+
+    class Meta:
+        verbose_name = "Характеристика"
+        verbose_name_plural = "Характеристики"
+
+    def __str__(self):
+        return f"{self.name}: {self.value}"
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images", verbose_name="Продукт")
+    image = models.ImageField("Фото продукта", upload_to="product_gallery/")
+    order = models.PositiveIntegerField("Порядок", default=0)
+
+    class Meta:
+        verbose_name = "Фото продукта"
+        verbose_name_plural = "Галерея продукта"
+        ordering = ["order", "id"]
+
+    def __str__(self):
+        return f"Фото для {self.product.name} #{self.id}"

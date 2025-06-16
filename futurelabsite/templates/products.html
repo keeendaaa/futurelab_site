@@ -100,7 +100,7 @@
                                         {% endif %}
                                         <div class="product-title">{{ product.name }}</div>
                                         <div class="product-desc">{{ product.description|truncatechars:100 }}</div>
-                                        <a href="#" class="product-btn">Подробнее&gt;&gt;</a>
+                                        <a href="/products/{{ product.slug }}/" class="product-btn">Подробнее&gt;&gt;</a>
                                     </div>
                                 {% endfor %}
                             </div>

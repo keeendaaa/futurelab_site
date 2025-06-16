@@ -16,10 +16,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Укажите токен админ-бота и chat_id администратора
-ADMIN_BOT_TOKEN = '7948591411:AAFJ-d46OoKX6azLW3TSVMlnqIVC4a5FXCk'
-ADMIN_CHAT_ID = 1267841885  # Ваш Telegram chat_id (админ айди)
 
+ADMIN_BOT_TOKEN = '7948591411:AAFJ-d46OoKX6azLW3TSVMlnqIVC4a5FXCk'
+ADMIN_CHAT_ID = 1267841885  
 class AdminBot:
     def __init__(self):
         logger.info("Инициализация админ-бота...")
