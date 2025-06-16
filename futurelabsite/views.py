@@ -31,6 +31,9 @@ def industry(request):
 def excursion(request):
     return render(request, 'excursion.html')
 
+def education(request):
+    return render(request, 'education.html')
+
 TELEGRAM_TOKEN = '8154636602:AAELY7GSm_66sOk1CPPqIEXqBA-M1aNM9SU'
 TELEGRAM_CHAT_ID = '1267841885'  
 

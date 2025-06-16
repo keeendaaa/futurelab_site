@@ -2,12 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', 'Inter', sans-serif;
+    /* font-family: 'Montserrat', 'Inter', sans-serif; */
 }
 
 body {
     background-color: #ffffff;
     padding-top: 72px; /* Add padding to body to prevent content from hiding under fixed header */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
 .future-frame {
@@ -60,8 +62,7 @@ body {
 .header-lab {
     color: #3b7bbf;
     font-size: 1.35rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     white-space: nowrap;
     text-align: left;
 }
@@ -208,7 +209,6 @@ body {
 .banner-btn {
     background: #fff;
     color: #222;
-    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 1rem;
     border: none;
@@ -261,23 +261,20 @@ body {
 .about-title {
     color: #2366a8;
     font-size: 1.6rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 6px;
 }
 
 .about-text {
     color: #222;
     font-size: 1.08rem;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     margin-bottom: 8px;
 }
 
 .about-link {
     color: #2366a8;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 1.08rem;
     text-decoration: none;
     align-self: flex-end;
@@ -297,7 +294,6 @@ body {
     transition: max-height 0.7s cubic-bezier(.4,0,.2,1), opacity 0.5s;
     margin-top: 0;
     color: #222;
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.05rem;
     font-weight: 400;
     background: transparent;
@@ -327,8 +323,7 @@ body {
 .products-title {
     color: #2366a8;
     font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     margin: 0 0 12px 24px;
     padding-top: 24px;
 }
@@ -443,7 +438,6 @@ body {
 
 .slider-content h3 {
     font-size: 1.5rem;
-    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     margin-bottom: 12px;
     color: #fff;
@@ -459,7 +453,6 @@ body {
 .slider-btn {
     background: #fff;
     color: #222;
-    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 1rem;
     border: none;
@@ -578,7 +571,6 @@ body {
 }
 .product-title {
     color: #2366a8;
-    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 1.15rem;
     margin-bottom: 8px;
@@ -593,7 +585,6 @@ body {
 .product-btn {
     background: #fff;
     color: #222;
-    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 1rem;
     border: none;
@@ -631,7 +622,6 @@ body {
     border-radius: 50%;
     background: #fff;
     color: #222;
-    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 1.1rem;
     display: flex;
@@ -696,8 +686,6 @@ body {
 }
 
 .nav-item {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
     font-size: 1.08rem;
     color: #222;
     padding: 7px 16px;
@@ -734,8 +722,7 @@ body {
 .news-title {
     color: #2366a8;
     font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
 }
 .news-social-buttons {
     display: flex;
@@ -747,8 +734,6 @@ body {
     gap: 8px;
     background: #e6f0fa;
     color: #2366a8;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     font-size: 1.08rem;
     border-radius: 8px;
     padding: 6px 16px;
@@ -802,8 +787,6 @@ body {
     gap: 8px;
 }
 .news-caption {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     font-size: 1.08rem;
     color: #222;
     margin-bottom: 4px;
@@ -851,8 +834,7 @@ body {
 .services-title {
     color: #2366a8;
     font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     text-align: center;
     margin-bottom: 18px;
 }
@@ -875,8 +857,6 @@ body {
     position: relative;
     min-height: 150px;
     padding: 18px 18px 18px 18px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     font-size: 1.3rem;
     color: #222;
     overflow: hidden;
@@ -895,8 +875,6 @@ body {
     z-index: 2;
     color: #2366a8;
     font-size: 1.25rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
     background: rgba(255,255,255,0.85);
     border-radius: 8px;
     padding: 4px 12px;
@@ -927,8 +905,7 @@ body {
 .partners-title {
     color: #2366a8;
     font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     margin: 0 0 18px 24px;
     padding-top: 24px;
 }
@@ -976,14 +953,12 @@ body {
 .footer-lab-title {
     color: #fff;
     font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 1px;
 }
 .footer-lab-desc {
     color: #fff;
     font-size: 1.1rem;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
 }
 .footer-meta {
@@ -1010,8 +985,7 @@ body {
     gap: 8px;
     background: #3b7bbf;
     color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 1.08rem;
     border-radius: 8px;
     padding: 6px 16px;
@@ -1452,10 +1426,9 @@ body {
 }
 
 .dropdown-drone span {
-  font-family: 'Montserrat', sans-serif;
   font-size: 1.08rem;
   color: #2366a8;
-  font-weight: 500;
+  font-weight: 700;
   text-align: center;
 }
 
@@ -1500,11 +1473,10 @@ body {
 }
 
 .dropdown-link {
-  font-family: 'Montserrat', sans-serif;
   font-size: 1.15rem;
   color: #222;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 0;
   transition: color 0.2s;
   display: block;
@@ -1655,8 +1627,7 @@ body {
 .contact-title {
     color: #2366a8;
     font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 12px;
     text-align: left;
 }
@@ -1668,7 +1639,7 @@ body {
 .form-group label {
     font-size: 1rem;
     color: #222;
-    font-weight: 500;
+    font-weight: 700;
 }
 .form-group input,
 .form-group textarea {
@@ -1863,9 +1834,8 @@ body {
 }
 #services-dropdown .dropdown-drone span:first-child {
   color: #2366a8;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
   font-size: 1.05rem;
+  font-weight: 700;
   margin-bottom: 4px;
 }
 #services-dropdown .dropdown-drone span:nth-child(2) {
@@ -1876,8 +1846,6 @@ body {
 #services-dropdown .dropdown-link {
   background: none;
   color: #2366a8;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: normal;
   font-size: 0.97rem;
   border: none;
   border-radius: 0;
@@ -1936,4 +1904,20 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto;
   }
+}
+
+/* Топбар — только здесь Montserrat */
+.header-lab, .nav-item, .main-nav, .nav-list {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+/* Жирные подписи и акценты */
+.news-caption, .about-link, .about-number-title, .cards-next, .dropdown-drone span:first-child, .dropdown-link {
+    font-weight: 700;
+}
+
+/* Обычный текст */
+.about-text, .about-more, .footer-lab-desc, .news-text, .form-group label, .contact-desc {
+    font-weight: 400;
 }

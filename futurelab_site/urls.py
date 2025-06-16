@@ -36,6 +36,7 @@ urlpatterns = [
     path('services/industry/', views.industry, name='industry'),
     path('services/excursion/', views.excursion, name='excursion'),
     path('products/<slug:slug>/', product_detail, name='product_detail'),
+    path('education/', views.education, name='education'),
 ]
 
 if settings.DEBUG:
