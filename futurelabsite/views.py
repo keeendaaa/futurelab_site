@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -77,6 +77,8 @@ def search_products(request):
     products = []
     if query:
         products = Product.objects.filter(name__icontains=query)
+        if products.count() == 1:
+            return redirect('product_detail', slug=products.first().slug)
     return render(request, 'search_results.html', {'query': query, 'products': products})
 
 def autocomplete_products(request):
@@ -95,7 +97,7 @@ def autocomplete_products(request):
         for p in filtered[:15]:
             results.append({
                 'name': p.name,
-                'url': f'/products#{p.slug}' if hasattr(p, 'slug') else '',
+                'url': f'/products/{p.slug}/',
                 'id': p.id
             })
     return JsonResponse({'results': results})

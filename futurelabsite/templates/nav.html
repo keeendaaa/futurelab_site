@@ -97,6 +97,27 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownTimerProducts = setTimeout(hideDropdownProducts, 200);
   });
 
+  // --- Клик по дрону в топ-баре ---
+  const droneLinks = {
+    'ДКК «Стрекоза»': 'dkk-strekosa',
+    'КК «Паук»': 'pauk',
+    'БАС «Муравей»': 'muravey',
+    'БАС «Муравей 24»': 'muravey24',
+    'БАС «Шмель»': 'shmel',
+    'БАС «Грузовик M500+»': 'm500',
+    'БАС «Грузовик М700»': 'm700',
+    '«Комар FPV»': 'komar',
+  };
+  document.querySelectorAll('.dropdown-drone').forEach(function(item) {
+    item.addEventListener('click', function() {
+      const name = this.querySelector('span').textContent.trim();
+      const slug = droneLinks[name];
+      if (slug) {
+        window.location.href = '/products/' + slug + '/';
+      }
+    });
+  });
+
   // --- DROPDOWN MENU SERVICES ---
   const navItemServices = document.querySelector('.nav-item-services');
   const dropdownMenuServices = document.getElementById('services-dropdown');
@@ -117,4 +138,51 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdownTimerServices = setTimeout(hideDropdownServices, 200);
   });
 });
+
+// --- AJAX автокомплит поиска дронов ---
+(function(){
+    const popup = document.getElementById('search-popup');
+    const input = document.getElementById('search-input');
+    const suggestions = document.getElementById('search-suggestions');
+    const actions = document.querySelector('.header-actions');
+    let timer = null;
+    actions.addEventListener('click', function(e){
+        popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+        input.value = '';
+        suggestions.innerHTML = '';
+        if(popup.style.display === 'block') input.focus();
+    });
+    document.addEventListener('click', function(e){
+        if(!popup.contains(e.target) && !actions.contains(e.target)) popup.style.display = 'none';
+    });
+    input.addEventListener('input', function(){
+        clearTimeout(timer);
+        const q = input.value.trim();
+        if(!q){ suggestions.innerHTML = ''; return; }
+        timer = setTimeout(function(){
+            fetch(`/autocomplete_products/?q=${encodeURIComponent(q)}`)
+                .then(r=>r.json())
+                .then(data=>{
+                    suggestions.innerHTML = '';
+                    if(data.results.length){
+                        data.results.forEach(function(item){
+                            const li = document.createElement('li');
+                            li.style.padding = '6px 0';
+                            li.style.cursor = 'pointer';
+                            li.textContent = item.name;
+                            li.onclick = function(){
+                                if(item.url){ window.location.href = item.url; }
+                            };
+                            suggestions.appendChild(li);
+                        });
+                    }else{
+                        const li = document.createElement('li');
+                        li.textContent = 'Ничего не найдено';
+                        li.style.color = '#888';
+                        suggestions.appendChild(li);
+                    }
+                });
+        }, 200);
+    });
+})();
 </script> 
