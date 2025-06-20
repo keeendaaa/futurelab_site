@@ -1,228 +1,157 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Продукты | Лаборатория будущего</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css">
-    <style>
-        body {
-            padding-top: 72px !important;
-        }
-        main, .products-content, .products-cards, .container {
-            margin-top: 0 !important;
-            padding-top: 0 !important;
-        }
-        .sidebar-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .sidebar-item {
-            font-weight: bold;
-            font-size: 18px;
-            padding: 10px 0 10px 0;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            border-bottom: 2px solid #e5e5e5;
-            transition: color 0.2s;
-        }
-        .sidebar-item:last-child {
-            border-bottom: none;
-        }
-        .sidebar-item.active {
-            color: #3b7bbf;
-        }
-        .sidebar-arrow {
-            margin-left: auto;
-            font-size: 20px;
-            font-weight: bold;
-            color: #222;
-        }
-        .products-cards {
-            margin-left: 132px;
-        }
-        .product-card {
-            padding-top: 0px !important;
-        }
-        .product-card img {
-            max-width: 220px;
-            max-height: 140px;
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto 18px auto;
-            object-fit: contain;
-            background: #fff;
-            border-radius: 12px;
-        }
-        .cards-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 48px 48px;
-            align-items: flex-start;
-            justify-content: flex-start;
+{% extends "base.html" %}
+{% block title %}Продукты | Лаборатория будущего{% endblock %}
+
+{% block content %}
+<style>
+    .products-page-content {
+        display: flex;
+        max-width: 1200px;
+        margin: 40px auto 0 auto;
+        gap: 32px;
+    }
+
+    .products-sidebar {
+        min-width: 270px;
+        position: sticky;
+        top: 100px;
+        align-self: flex-start;
+    }
+
+    .sidebar-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-item {
+        font-weight: bold;
+        font-size: 18px;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        border-bottom: 2px solid #e5e5e5;
+        transition: color 0.2s;
+    }
+
+    .sidebar-item:last-child {
+        border-bottom: none;
+    }
+
+    .sidebar-item.active {
+        color: #3b7bbf;
+    }
+
+    .sidebar-arrow {
+        margin-left: auto;
+        font-size: 20px;
+        font-weight: bold;
+        color: #222;
+    }
+
+    .products-cards {
+        flex: 1;
+    }
+
+    .product-card img {
+        max-width: 220px;
+        max-height: 140px;
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 18px auto;
+        object-fit: contain;
+        background: #fff;
+        border-radius: 12px;
+    }
+
+    .cards-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    
+    @media (max-width: 768px) {
+        .products-page-content {
+            flex-direction: column;
         }
         .products-sidebar {
-            padding-top: 142px;
+            position: static;
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 16px;
         }
-    </style>
-</head>
-<body>
-    {% include "nav.html" %}
-    <main>
-        <div class="products-content" style="display: flex; max-width: 1200px; margin: 40px auto 0 auto;">
-            <aside class="products-sidebar" style="min-width: 270px;">
-                <ul class="sidebar-list">
-                    <li class="sidebar-item active" data-target="all">Все продукты <span class="sidebar-arrow">&#8250;</span></li>
-                    <li class="sidebar-item" data-target="kanatohod">Комплексы канатоход <span class="sidebar-arrow">&#8250;</span></li>
-                    <li class="sidebar-item" data-target="bas">Многофункциональные БАС <span class="sidebar-arrow">&#8250;</span></li>
-                    <li class="sidebar-item" data-target="fpv">FPV-Дроны <span class="sidebar-arrow">&#8250;</span></li>
-                    <li class="sidebar-item" data-target="cargo">Грузовые дроны <span class="sidebar-arrow">&#8250;</span></li>
-                    <li class="sidebar-item" data-target="software">Программное обеспечение <span class="sidebar-arrow">&#8250;</span></li>
-                    <li class="sidebar-item" data-target="champ">Оборудование для чемпионатов <span class="sidebar-arrow">&#8250;</span></li>
-                </ul>
-            </aside>
-            <section class="products-cards" style="flex: 1;">
-                <div id="all">
-                    {% for category, verbose_name, products_in_cat in products_by_category %}
-                        <div id="{{ category }}" style="margin-bottom: 64px; padding-top: 0;">
-                            <h2 style="margin: 32px 0 12px 16px; font-size: 1.5rem; color: #3b7bbf;">{{ verbose_name }}</h2>
-                            <div class="cards-row">
-                                {% for product in products_in_cat %}
-                                    <div class="product-card">
-                                        {% if product.image %}
-                                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                                        {% else %}
-                                            <div style="font-size:12px;color:red;">Нет изображения</div>
-                                        {% endif %}
-                                        <div class="product-title">{{ product.name }}</div>
-                                        <div class="product-desc">{{ product.description|truncatechars:100 }}</div>
-                                        <a href="/products/{{ product.slug }}/" class="product-btn">Подробнее&gt;&gt;</a>
-                                    </div>
-                                {% endfor %}
+    }
+</style>
+<div class="products-page-content">
+    <aside class="products-sidebar">
+        <ul class="sidebar-list">
+            <li class="sidebar-item active" data-target="all">Все продукты <span class="sidebar-arrow">&#8250;</span></li>
+            <li class="sidebar-item" data-target="kanatohod">Комплексы канатоход <span class="sidebar-arrow">&#8250;</span></li>
+            <li class="sidebar-item" data-target="bas">Многофункциональные БАС <span class="sidebar-arrow">&#8250;</span></li>
+            <li class="sidebar-item" data-target="fpv">FPV-Дроны <span class="sidebar-arrow">&#8250;</span></li>
+            <li class="sidebar-item" data-target="cargo">Грузовые дроны <span class="sidebar-arrow">&#8250;</span></li>
+            <li class="sidebar-item" data-target="software">Программное обеспечение <span class="sidebar-arrow">&#8250;</span></li>
+            <li class="sidebar-item" data-target="champ">Оборудование для чемпионатов <span class="sidebar-arrow">&#8250;</span></li>
+        </ul>
+    </aside>
+    <section class="products-cards">
+        <div id="all">
+            {% for category, verbose_name, products_in_cat in products_by_category %}
+                <div id="{{ category }}" style="margin-bottom: 64px;">
+                    <h2 style="margin: 0 0 12px 0; font-size: 1.5rem; color: #3b7bbf;">{{ verbose_name }}</h2>
+                    <div class="cards-row">
+                        {% for product in products_in_cat %}
+                            <div class="product-card">
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                {% else %}
+                                    <div style="font-size:12px;color:red;">Нет изображения</div>
+                                {% endif %}
+                                <div class="product-title">{{ product.name }}</div>
+                                <div class="product-desc">{{ product.description|truncatechars:100 }}</div>
+                                <a href="/products/{{ product.slug }}/" class="product-btn">Подробнее&gt;&gt;</a>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </section>
+            {% endfor %}
         </div>
-    </main>
-    <footer style="background:#222; color:#ccc;">
-        <div class="partners-footer" style="background:#222; color:#ccc;">
-            <div class="footer-left">
-                <img src="/static/images/logo2.png" alt="FutureLab" class="footer-logo2">
-                <div class="footer-meta">
-                    The activity is carried out with the grant support of the «Skolkovo» Foundation<br>
-                    © 2011–2025 Future Lab, LLC. All rights reserved<br>
-                    ИНН 6658399868, <a href="/static/privacy_policy.pdf" download style="color:#b3d1ff;text-decoration:underline;">Политика конфиденциальности</a>
-                </div>
-            </div>
-            <div class="footer-right">
-                <a href="https://vk.com/robot_urfu" class="footer-social" target="_blank">
-                    Мы в социальных сетях <img src="/static/images/vk.png" alt="VK" class="footer-vk">
-                </a>
-                <div class="footer-partners">
-                    <img src="/static/images/fund1.png" alt="Фонд 1" class="footer-fund">
-                    <img src="/static/images/fund2.png" alt="Фонд 2" class="footer-fund">
-                    <img src="/static/images/fund3.png" alt="Фонд 3" class="footer-fund">
-                    <img src="/static/images/fund4.png" alt="Фонд 4" class="footer-fund">
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script>
-        // --- DROPDOWN MENU PRODUCTS ---
-        const navItemProducts = document.querySelector('.nav-item-products');
-        const dropdownMenu = document.getElementById('products-dropdown');
-        let dropdownTimer = null;
-        function showDropdown() {
-            dropdownMenu.style.display = 'block';
-        }
-        function hideDropdown() {
-            dropdownMenu.style.display = 'none';
-        }
-        navItemProducts.addEventListener('mouseenter', showDropdown);
-        dropdownMenu.addEventListener('mouseenter', showDropdown);
-        navItemProducts.addEventListener('mouseleave', () => {
-            dropdownTimer = setTimeout(hideDropdown, 120);
-        });
-        dropdownMenu.addEventListener('mouseleave', () => {
-            dropdownTimer = setTimeout(hideDropdown, 120);
-        });
-        dropdownMenu.addEventListener('mouseenter', () => {
-            if (dropdownTimer) clearTimeout(dropdownTimer);
-        });
-        navItemProducts.addEventListener('mouseenter', () => {
-            if (dropdownTimer) clearTimeout(dropdownTimer);
-        });
+    </section>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.sidebar-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+            document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+            
+            const targetId = this.getAttribute('data-target');
+            const targetElement = document.getElementById(targetId);
 
-        // --- SMOOTH SCROLL TO CATEGORY ---
-        document.querySelectorAll('.sidebar-item').forEach(function(item) {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-                const target = this.getAttribute('data-target');
-                if (target === 'all') {
-                    window.scrollTo({ top: document.getElementById('all').offsetTop - 70, behavior: 'smooth' });
+            if (targetElement) {
+                // Temporarily show all sections to calculate offsetTop correctly
+                document.querySelectorAll('.products-cards > div > div').forEach(section => {
+                    section.style.display = 'block';
+                });
+
+                if (targetId === 'all') {
+                    // No filtering needed, just scroll to top
+                    window.scrollTo({ top: document.querySelector('.products-cards').offsetTop - 100, behavior: 'smooth' });
                 } else {
-                    const el = document.getElementById(target);
-                    if (el) {
-                        window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
-                    }
+                    // Hide non-target sections
+                    document.querySelectorAll('.products-cards > div > div').forEach(section => {
+                        if (section.id !== targetId) {
+                            section.style.display = 'none';
+                        }
+                    });
+                    window.scrollTo({ top: targetElement.offsetTop - 100, behavior: 'smooth' });
                 }
-            });
+            }
         });
-
-        // --- AJAX автокомплит поиска дронов ---
-        (function(){
-            const btn = document.getElementById('search-btn');
-            const popup = document.getElementById('search-popup');
-            const input = document.getElementById('search-input');
-            const suggestions = document.getElementById('search-suggestions');
-            const actions = document.querySelector('.header-actions');
-            let timer = null;
-            actions.addEventListener('click', function(e){
-                popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-                input.value = '';
-                suggestions.innerHTML = '';
-                if(popup.style.display === 'block') input.focus();
-            });
-            document.addEventListener('click', function(e){
-                if(!popup.contains(e.target) && !actions.contains(e.target)) popup.style.display = 'none';
-            });
-            input.addEventListener('input', function(){
-                clearTimeout(timer);
-                const q = input.value.trim();
-                if(!q){ suggestions.innerHTML = ''; return; }
-                timer = setTimeout(function(){
-                    fetch(`/autocomplete_products/?q=${encodeURIComponent(q)}`)
-                        .then(r=>r.json())
-                        .then(data=>{
-                            suggestions.innerHTML = '';
-                            if(data.results.length){
-                                data.results.forEach(function(item){
-                                    const li = document.createElement('li');
-                                    li.style.padding = '6px 0';
-                                    li.style.cursor = 'pointer';
-                                    li.textContent = item.name;
-                                    li.onclick = function(){
-                                        if(item.url){ window.location.href = item.url; }
-                                    };
-                                    suggestions.appendChild(li);
-                                });
-                            }else{
-                                const li = document.createElement('li');
-                                li.textContent = 'Ничего не найдено';
-                                li.style.color = '#888';
-                                suggestions.appendChild(li);
-                            }
-                        });
-                }, 200);
-            });
-        })();
-    </script>
-</body>
-</html> 
+    });
+});
+</script>
+{% endblock %} 

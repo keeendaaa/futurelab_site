@@ -72,8 +72,27 @@
         <ul id="search-suggestions" style="list-style:none;padding:0;margin:8px 0 0 0;max-height:220px;overflow-y:auto;"></ul>
       </div>
     </div>
+    <button class="header-icon" id="mobile-menu-btn" aria-label="Меню">
+        <img src="/static/images/menu.svg" alt="Меню">
+    </button>
   </div>
 </header>
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-header">
+    <button class="mobile-menu-close" id="mobile-menu-close-btn">&times;</button>
+  </div>
+  <ul class="mobile-menu-nav">
+    <li><a href="/products">Продукты</a></li>
+    <li><a href="/services">Услуги</a></li>
+    <li><a href="/about">О нас</a></li>
+    <li><a href="/education">Обучение</a></li>
+    <li><a href="/#contact-form">Контакты</a></li>
+    <li class="mobile-search">
+        <input type="text" id="mobile-search-input" placeholder="Поиск дрона...">
+        <ul id="mobile-search-suggestions" style="list-style:none;padding:0;margin:8px 0 0 0;max-height:220px;overflow-y:auto;position:relative;background:#fff;z-index:1002;"></ul>
+    </li>
+  </ul>
+</div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // --- DROPDOWN MENU PRODUCTS ---
@@ -138,6 +157,45 @@ document.addEventListener('DOMContentLoaded', function() {
   dropdownMenuServices.addEventListener('mouseleave', () => {
     dropdownTimerServices = setTimeout(hideDropdownServices, 200);
   });
+
+  // --- AJAX автокомплит для МОБИЛЬНОГО поиска ---
+  (function(){
+    const mobileInput = document.getElementById('mobile-search-input');
+    const mobileSuggestions = document.getElementById('mobile-search-suggestions');
+    let mobileTimer = null;
+
+    mobileInput.addEventListener('input', function(){
+      clearTimeout(mobileTimer);
+      const q = mobileInput.value.trim();
+      if(!q){ mobileSuggestions.innerHTML = ''; return; }
+
+      mobileTimer = setTimeout(function(){
+        fetch(`/autocomplete_products/?q=${encodeURIComponent(q)}`)
+          .then(r=>r.json())
+          .then(data=>{
+            mobileSuggestions.innerHTML = '';
+            if(data.results.length){
+              data.results.forEach(function(item){
+                const li = document.createElement('li');
+                li.style.padding = '8px 12px';
+                li.style.cursor = 'pointer';
+                li.textContent = item.name;
+                li.onclick = function(){
+                  if(item.url){ window.location.href = item.url; }
+                };
+                mobileSuggestions.appendChild(li);
+              });
+            } else {
+              const li = document.createElement('li');
+              li.textContent = 'Ничего не найдено';
+              li.style.color = '#888';
+              li.style.padding = '8px 12px';
+              mobileSuggestions.appendChild(li);
+            }
+          });
+      }, 200);
+    });
+  })();
 });
 
 // --- AJAX автокомплит поиска дронов ---
