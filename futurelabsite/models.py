@@ -17,6 +17,7 @@ class Product(models.Model):
     image = models.ImageField("Изображение", upload_to="products/")
     category = models.CharField("Категория", max_length=100, choices=CATEGORY_CHOICES, blank=True, null=True, help_text="Выберите категорию из списка")
     slug = models.SlugField("Слаг", unique=True)
+    video = models.FileField("Видео", upload_to="product_videos/", null=True, blank=True)
 
     def __str__(self):
         return self.name
